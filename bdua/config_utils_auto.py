@@ -18,7 +18,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def initialize_driver():
     #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-    path = '/opt/render/project/.render/chrome/opt/google/chrome'
+    path = '/opt/render/project/bin/chromedriver'
 
 
    
@@ -50,7 +50,7 @@ def initialize_driver():
 def initialize_driver():
     
     #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-    path = '/opt/render/project/.render/chrome/opt/google/chrome'
+    path = '/opt/render/project/bin/chromedriver'
 
     service = Service(path)
 
