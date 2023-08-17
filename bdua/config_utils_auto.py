@@ -35,8 +35,8 @@ def initialize_driver():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')  # Agregar la opción headless
 
-    chrome_options.addArguments("--no-sandbox");
-    chrome_options.addArguments("--disable-dev-shm-usage");
+    chrome_options.add_argument("--no-sandbox");
+    chrome_options.add_argument("--disable-dev-shm-usage");
     chrome_options.add_argument('--remote-debugging-port=9222')
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
@@ -72,8 +72,8 @@ def initialize_driver():
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
 
-        chrome_options.addArguments("--no-sandbox");
-        chrome_options.addArguments("--disable-dev-shm-usage");
+        chrome_options.add_argument("--no-sandbox");
+        chrome_options.add_argument("--disable-dev-shm-usage");
         chrome_options.add_argument('--remote-debugging-port=9222')
 
         driver = webdriver.Chrome(service=service, options=chrome_options)
