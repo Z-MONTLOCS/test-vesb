@@ -55,6 +55,6 @@ else
 fi
 
 echo "...Installing packages..."
-pip install -r requirements.txt
+#pip install -r requirements.txt
 
 echo "...Build Script Completed!"
