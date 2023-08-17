@@ -39,13 +39,21 @@ def initialize_driver():
     #driver = webdriver.Chrome(service=service)
 
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')  # Agregar la opción headless
+    
 
-    #chrome_options.add_argument("--no-sandbox");
-    #chrome_options.add_argument("--disable-dev-shm-usage");
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--window-size=1420,1080')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--remote-debugging-port=9222')
     driver = webdriver.Chrome(service=service, options=chrome_options)
+
+
+
+
+
+
 
     # Sitio web donde se encuentra el elemento
     website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
@@ -82,12 +90,11 @@ def initialize_driver():
 
        
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')  # Agregar la opción headless
-
-        #chrome_options.add_argument("--no-sandbox");
-        #chrome_options.add_argument("--disable-dev-shm-usage");
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--window-size=1420,1080')
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--remote-debugging-port=9222')
-
         driver = webdriver.Chrome(service=service, options=chrome_options)
 
         
