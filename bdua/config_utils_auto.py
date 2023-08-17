@@ -17,7 +17,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def initialize_driver():
-    path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    path = '/opt/render/project/.render/chrome/opt/google/chrome'
+
+
+   
     service = Service(path)
 
     # Inicializar el controlador de Chrome
@@ -45,7 +49,9 @@ def initialize_driver():
 
 def initialize_driver():
     
-    path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    path = '/opt/render/project/.render/chrome/opt/google/chrome'
+
     service = Service(path)
 
     try:
