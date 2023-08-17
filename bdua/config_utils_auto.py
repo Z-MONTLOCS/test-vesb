@@ -41,13 +41,17 @@ def initialize_driver():
 
     
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--window-size=1420,1080')
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--remote-debugging-port=9222')
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')
+    options.add_argument('--headless')
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-gpu')
+        
+
+    driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(90)
 
 
 
@@ -89,13 +93,17 @@ def initialize_driver():
         #driver = webdriver.Chrome(service=service)
 
        
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--window-size=1420,1080')
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--remote-debugging-port=9222')
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        options = webdriver.ChromeOptions()
+        options.add_argument('--no-sandbox')
+        options.add_argument('--headless')
+        options.add_argument('--ignore-certificate-errors')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--disable-gpu')
+        
+
+        driver = webdriver.Chrome(options=options)
+        driver.set_page_load_timeout(90)
 
         
 
