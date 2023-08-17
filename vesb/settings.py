@@ -89,7 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'whitenoise.middleware.WhiteNoiseMiddleware',
+               # 'whitenoise.middleware.WhiteNoiseMiddleware',
 
             ],
         },
@@ -108,21 +108,21 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
  
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'vesb_db',
-    #     'USER': 'prueba',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost',  # O la dirección IP del servidor MySQL
-    #     'PORT': '3306',       # Puerto MySQL por defecto
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'vesb_db',
+        'USER': 'prueba',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # O la dirección IP del servidor MySQL
+        'PORT': '3306',       # Puerto MySQL por defecto
+    }
 
 
-     'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
-    )
+    #  'default': dj_database_url.config(
+    #     # Feel free to alter this value to suit your needs.
+    #     default='postgresql://postgres:postgres@localhost:5432/mysite',
+    #     conn_max_age=600
+    # )
 }
 
 
