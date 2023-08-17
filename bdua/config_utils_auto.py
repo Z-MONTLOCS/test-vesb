@@ -25,6 +25,13 @@ def initialize_driver():
     service = Service(CHROMEDRIVER_PATH)
 
 
+    service.command_line_args()  # Opcional: muestra los argumentos de línea de comando
+    service.start(log_path=None)  # No necesitas un log_path aquí, ya que el log se generará para Chrome
+
+    # Configura la salida de logs de ChromeDriver a la consola
+    service.service_args.append('--verbose')  # Agrega esta línea para habilitar logs verbosos en la consola
+
+
    
     #service = Service(path)
 
@@ -35,8 +42,8 @@ def initialize_driver():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')  # Agregar la opción headless
 
-    chrome_options.add_argument("--no-sandbox");
-    chrome_options.add_argument("--disable-dev-shm-usage");
+    #chrome_options.add_argument("--no-sandbox");
+    #chrome_options.add_argument("--disable-dev-shm-usage");
     chrome_options.add_argument('--remote-debugging-port=9222')
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
@@ -63,6 +70,11 @@ def initialize_driver():
     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
 
     service = Service(CHROMEDRIVER_PATH)
+    service.command_line_args()  # Opcional: muestra los argumentos de línea de comando
+    service.start(log_path=None)  # No necesitas un log_path aquí, ya que el log se generará para Chrome
+
+# Configura la salida de logs de ChromeDriver a la consola
+    service.service_args.append('--verbose')  # Agrega esta línea para habilitar logs verbosos en la consola
 
     try:
         # Inicializar el controlador de Chrome
@@ -72,8 +84,8 @@ def initialize_driver():
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
 
-        chrome_options.add_argument("--no-sandbox");
-        chrome_options.add_argument("--disable-dev-shm-usage");
+        #chrome_options.add_argument("--no-sandbox");
+        #chrome_options.add_argument("--disable-dev-shm-usage");
         chrome_options.add_argument('--remote-debugging-port=9222')
 
         driver = webdriver.Chrome(service=service, options=chrome_options)
