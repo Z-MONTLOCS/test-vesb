@@ -32,7 +32,7 @@ def initialize_driver():
     #service = Service(path)
 
     # Inicializar el controlador de Chrome
-    #driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(service=service)
 
 
     
@@ -81,7 +81,7 @@ def initialize_driver():
  
     try:
         # Inicializar el controlador de Chrome
-        #driver = webdriver.Chrome(service=service)
+        driver = webdriver.Chrome(service=service)
 
        
         options = webdriver.ChromeOptions()
