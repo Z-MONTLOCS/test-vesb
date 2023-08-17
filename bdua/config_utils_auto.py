@@ -22,7 +22,7 @@ def initialize_driver():
 
     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
 
-    service = Service(CHROMEDRIVER_PATH)
+    options = options(CHROMEDRIVER_PATH)
 
 
     
@@ -32,7 +32,7 @@ def initialize_driver():
     #service = Service(path)
 
     # Inicializar el controlador de Chrome
-    driver = webdriver.Chrome(service=service)
+    #driver = webdriver.Chrome(service=service)
 
 
     
@@ -77,11 +77,11 @@ def initialize_driver():
     CHROME_BINARY_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
 
-    service = Service(CHROMEDRIVER_PATH)
+    options = options(CHROMEDRIVER_PATH)
  
     try:
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service)
+       # driver = webdriver.Chrome(service=service)
 
        
         options = webdriver.ChromeOptions()
