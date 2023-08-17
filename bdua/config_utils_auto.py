@@ -67,6 +67,9 @@ def initialize_driver():
        
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
+
+        chrome_options.addArguments("--no-sandbox");
+        chrome_options.addArguments("--disable-dev-shm-usage");
         driver = webdriver.Chrome(service=service, options=chrome_options)
 
         
