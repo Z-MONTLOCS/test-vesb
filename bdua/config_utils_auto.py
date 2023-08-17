@@ -34,6 +34,10 @@ def initialize_driver():
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')  # Agregar la opción headless
+
+    chrome_options.addArguments("--no-sandbox");
+    chrome_options.addArguments("--disable-dev-shm-usage");
+    chrome_options.add_argument('--remote-debugging-port=9222')
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # Sitio web donde se encuentra el elemento
@@ -70,6 +74,8 @@ def initialize_driver():
 
         chrome_options.addArguments("--no-sandbox");
         chrome_options.addArguments("--disable-dev-shm-usage");
+        chrome_options.add_argument('--remote-debugging-port=9222')
+
         driver = webdriver.Chrome(service=service, options=chrome_options)
 
         
