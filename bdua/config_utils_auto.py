@@ -112,6 +112,8 @@ def initialize_driver():
 
         CHROME_PATH = "/opt/render/project/bin/chrome-linux64"
         CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver-linux64"
+        service = Service(executable_path=CHROMEDRIVER_PATH)
+
 
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
@@ -121,7 +123,9 @@ def initialize_driver():
         options.add_argument("--disable-gpu")
 
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options)
+        driver = webdriver.Chrome(service=service, options=options)
+
+        #driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options)
 
         print("=======================================")
         print("Versión de Selenium:", webdriver.__version__)
@@ -129,6 +133,11 @@ def initialize_driver():
 
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
+
+        
+        print("=======================================")
+        print("url del site:", website)
+        print("*******************************************")
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
