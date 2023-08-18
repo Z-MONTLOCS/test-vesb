@@ -41,8 +41,10 @@ if [[ -d $CHROMEDRIVER_PATH ]]; then
     rm -rf $CHROMEDRIVER_PATH
 fi
 
+# Obtener la versión de Google Chrome
+CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d'.' -f1)
+
 echo "...Fetching Latest Chromedriver Version..."
-CHROME_VERSION=$(apt-cache policy google-chrome-stable | grep 'Installed:' | cut -d' ' -f4)
 CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
 echo "Latest Chromedriver Version: $CHROMEDRIVER_VERSION"
 
@@ -64,6 +66,7 @@ echo "...Installing packages..."
 #pip install -r requirements.txt
 
 echo "...Build Script Completed!"
+
 
 
 
