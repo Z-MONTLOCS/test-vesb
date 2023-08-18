@@ -16,32 +16,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
-def initialize_driver():
-    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-    # Inicializar el controlador de Chrome
-    #driver = webdriver.Chrome(service=service)
 
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
-
-    service = Service(CHROMEDRIVER_PATH)
-
-   
-
-
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')  # Agregar la opción headless
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-
-    # Sitio web donde se encuentra el elemento
-    website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
-    driver.get(website)
-
-    # Configurar el cliente de DeathByCaptcha
-    username = "zyrivic"
-    password = "5RL:6dRdfadS#Hc"
-    client = HttpClient(username, password)
-
-    return driver, client
 
 
 
@@ -59,12 +34,12 @@ def initialize_driver():
 
     try:
         # Inicializar el controlador de Chrome
-        #driver = webdriver.Chrome(service=service)
+        driver = webdriver.Chrome(service=service)
 
        
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+       #driver = webdriver.Chrome(service=service, options=chrome_options)
 
         # Sitio web donde se encuentra el elemento
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
