@@ -35,10 +35,7 @@ import logging
 
 def initialize_driver():
 
-     
-    print("=======================================")
-    print("Inicializado:")
-    print("*******************************************")
+   
 
 
     #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
@@ -51,6 +48,11 @@ def initialize_driver():
 
 
     service = Service(executable_path=CHROMEDRIVER_PATH)
+
+      
+    print("=======================================")
+    print("Inicializado:")
+    print("*******************************************")
 
 
     try:
