@@ -49,6 +49,9 @@ from selenium.webdriver.support import expected_conditions as EC
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
+    service = Service(executable_path=CHROMEDRIVER_PATH)
+
+
     try:
         # Opciones para el navegador Chrome
         chrome_options = webdriver.ChromeOptions()
@@ -56,7 +59,7 @@ def initialize_driver():
         chrome_options.add_argument("--no-sandbox")  # Ejecución en entorno seguro
 
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
+        driver = webdriver.Chrome(service, options=chrome_options)
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
