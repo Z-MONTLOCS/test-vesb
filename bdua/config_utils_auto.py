@@ -36,30 +36,28 @@ import logging
 def initialize_driver():
 
      
-    print("=======================================")
-    print("Inicializado:")
-    print("*******************************************")
-
-
-    #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
-
-    CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
-
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-
-
-
-    service = Service(executable_path=CHROMEDRIVER_PATH)
-
+  
 
     try:
+
         
         print("=======================================")
         print("Versión de Selenium:", selenium.__version__)
         print("*******************************************")
+        
+
+        print("=======================================")
+        print("Inicializado:")
+        print("*******************************************")
 
 
+        #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
+
+        CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+
+        CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+        service = Service(executable_path=CHROMEDRIVER_PATH)
 
       
         options = webdriver.ChromeOptions()
@@ -72,7 +70,7 @@ def initialize_driver():
         driver = webdriver.Chrome(service=service, options=options)
         #driver = webdriver.Chrome(options=options)
         print("=======================================")
-        print("webdriver:Inicialixado")
+        print("webdriver:Inicializado")
         print("*******************************************")
 
 
