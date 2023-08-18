@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -8,25 +7,9 @@ from selenium.webdriver.common.by import By
 import requests
 import os
 import time
-import selenium
-
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
-# selenium 4
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-
-import logging
-
-
-
-
-
-
-
 
 
 
@@ -34,63 +17,81 @@ import logging
 
 
 def initialize_driver():
+    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    # Inicializar el controlador de Chrome
+    #driver = webdriver.Chrome(service=service)
 
-     
-    print("=======================================")
-    print("Inicializado:")
-    print("*******************************************")
+    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
+    service = Service(CHROMEDRIVER_PATH)
 
-    #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
-
-    CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
-
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+   
 
 
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')  # Agregar la opción headless
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
-    service = Service(executable_path=CHROMEDRIVER_PATH)
+    # Sitio web donde se encuentra el elemento
+    website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
+    driver.get(website)
+
+    # Configurar el cliente de DeathByCaptcha
+    username = "zyrivic"
+    password = "5RL:6dRdfadS#Hc"
+    client = HttpClient(username, password)
+
+    return driver, client
+
+
+
+
+
+def initialize_driver():
+    
+    # path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    # service = Service(path)
+
+    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
+    service = Service(CHROMEDRIVER_PATH)
+
 
 
     try:
-        
-        print("=======================================")
-        print("Versión de Selenium:", selenium.__version__)
-        print("*******************************************")
-
-
-
-      
-        options = webdriver.ChromeOptions()
-        options.add_argument("--no-sandbox")
-        options.add_argument("--headless")  
-        options.add_argument("--disable-extensions") 
-        options.add_argument("--disable-dev-shm-usage");
-        options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service, options=options)
-        #driver = webdriver.Chrome(options=options)
+        #driver = webdriver.Chrome(service=service)
 
-        
+       
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')  # Agregar la opción headless
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
-            
-
-        # URL del sitio web
+        # Sitio web donde se encuentra el elemento
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
 
-        # Configuración de cliente DeathByCaptcha
+         # Configurar el cliente de DeathByCaptcha
         username = "zyrivic"
         password = "5RL:6dRdfadS#Hc"
         client = HttpClient(username, password)
+
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
+
+
             )
 
+            
+            #      # Ocultar el botón utilizando JavaScript
+            # hide_script = "document.getElementById('btnConsultar').style.display   = 'none';"
+            # driver.execute_script(hide_script)
+
+
+            
+           
             print("Página cargada correctamente.")
         except Exception as e:
             print("Error al cargar la página:", e)
@@ -101,7 +102,6 @@ def initialize_driver():
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
-
 
 
 
