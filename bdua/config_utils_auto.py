@@ -69,8 +69,8 @@ def initialize_driver():
         options.add_argument("--disable-dev-shm-usage");
         options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
-        #driver = webdriver.Chrome(service=service, options=options)
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(service=service, options=options)
+        #driver = webdriver.Chrome(options=options)
 
         
 
