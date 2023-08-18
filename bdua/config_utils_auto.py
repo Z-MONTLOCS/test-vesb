@@ -87,13 +87,7 @@ def initialize_driver():
         print("Error inesperado:", e)
         raise
 
-# Llamada a la función para inicializar el controlador
-try:
-    driver = initialize_driver()
-    # Resto del código para interactuar con el sitio web usando el controlador
-finally:
-    if 'driver' in locals():
-        driver.quit()  # Asegurarse de cerrar el controlador incluso si ocurre una excepción
+
 
 
 
