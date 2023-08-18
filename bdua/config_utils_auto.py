@@ -22,23 +22,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import logging
 
 
-def test_logging(log_path):
-    logger = logging.getLogger('selenium')
 
-    logger.setLevel(logging.DEBUG)
-
-    handler = logging.FileHandler(log_path)
-    logger.addHandler(handler)
-
-    logging.getLogger('selenium.webdriver.remote').setLevel(logging.WARN)
-    logging.getLogger('selenium.webdriver.common').setLevel(logging.DEBUG)
-
-    logger.info("this is useful information")
-    logger.warning("this is a warning")
-    logger.debug("this is detailed debug information")
-
-    with open(log_path, 'r') as fp:
-        assert len(fp.readlines()) == 3
 
 
 
@@ -50,6 +34,13 @@ def test_logging(log_path):
 
 
 def initialize_driver():
+
+     
+    print("=======================================")
+    print("Inicializado:")
+    print("*******************************************")
+
+
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
     driver = webdriver.Chrome(CHROMEDRIVER_PATH)
@@ -67,8 +58,7 @@ def initialize_driver():
 
 
 
-        logger = logging.getLogger('selenium')
-        # Opciones para el navegador Chrome
+      
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
         options.add_argument("--headless")  
@@ -76,7 +66,9 @@ def initialize_driver():
         options.add_argument("--disable-dev-shm-usage");
         options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service, options=options)
+        #driver = webdriver.Chrome(service=service, options=options)
+        driver = webdriver.Chrome(options=options)
+
         
 
             
