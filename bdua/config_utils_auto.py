@@ -56,7 +56,7 @@ def initialize_driver():
         chrome_options.add_argument("--no-sandbox")  # Ejecución en entorno seguro
 
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
+        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
