@@ -54,12 +54,11 @@ def initialize_driver():
 
     try:
         # Opciones para el navegador Chrome
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("--headless")  # Modo sin cabeza (sin GUI)
-        chrome_options.add_argument("--no-sandbox")  # Ejecución en entorno seguro
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")  # 
 
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome( options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=options)
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
