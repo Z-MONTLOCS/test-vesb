@@ -35,50 +35,43 @@ import logging
 
 def initialize_driver():
 
+     
     print("=======================================")
-    print("Versión de Selenium:", selenium.__version__)
+    print("Inicializado:")
     print("*******************************************")
-        
-  
+
+
+    #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
+
+    CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+
+    
+
 
     try:
-
         
-       
-
         print("=======================================")
-        print("Inicializado: Linea 50")
+        print("Versión de Selenium:", selenium.__version__)
         print("*******************************************")
 
 
-        #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
 
-        CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
-
-        CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
-        print("=======================================")
-        print("Linea 58")
-        print("*******************************************")
-
-        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-        service = Service(CHROMEDRIVER_PATH)
-
-        print("=======================================")
-        print("Linea 66")
-        print("*******************************************")
+      
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
         options.add_argument("--headless")  
         options.add_argument("--disable-extensions") 
         options.add_argument("--disable-dev-shm-usage");
         options.add_argument("--disable-gpu")
+
+        print("*********************Linea 68**********************")
+
         # Inicializar el controlador de Chrome
+        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+        service = Service(executable_path=CHROMEDRIVER_PATH)
         driver = webdriver.Chrome(service=service, options=options)
         #driver = webdriver.Chrome(options=options)
-        print("=======================================")
-        print("webdriver:Inicializado")
-        print("*******************************************")
-
 
         
 
@@ -87,10 +80,6 @@ def initialize_driver():
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
-
-        print("=======================================")
-        print("URL SITE:",website)
-        print("*******************************************")
 
         # Configuración de cliente DeathByCaptcha
         username = "zyrivic"
