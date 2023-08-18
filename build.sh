@@ -2,51 +2,22 @@
 
 #!/bin/bash
 
-CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
-CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
+STORAGE_DIR=/opt/render/project/.render
 
-
-
-
-# Desinstalar Chromedriver si existe
-if [[ -d $CHROMEDRIVER_PATH ]]; then
-    echo "...Uninstalling Existing Chromedriver..."
-    rm -rf $CHROMEDRIVER_PATH
-fi
-
-if [[ ! -d $CHROME_PATH ]]; then
-    echo "...Downloading Chrome Binary..."
-    wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-    echo "...Installing Chrome Binary..."
-    mkdir -p /opt/render/project/bin/chrome
-    dpkg -x /tmp/google-chrome.deb /opt/render/project/bin/chrome
-
-    echo "...Cleaning Up..."
-    rm /tmp/google-chrome.deb
-
-    echo "...Adding Chrome to Path..."
-    export PATH="${PATH}:${CHROME_PATH}"
-    echo "Installed Chrome Version:"
-    google-chrome --version
+if [[ ! -d $STORAGE_DIR/chrome ]]; then
+  echo "...Downloading Chrome"
+  mkdir -p $STORAGE_DIR/chrome
+  cd $STORAGE_DIR/chrome
+  wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
+  rm ./google-chrome-stable_current_amd64.deb
+  cd $HOME/project/src # Make sure we return to where we were
 else
-    echo "...Detected Existing Chrome Binary"
+  echo "...Using Chrome from cache"
 fi
 
-echo "...Downloading Chromedriver..."
-CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-
-echo "...Installing Chromedriver..."
-unzip /tmp/chromedriver.zip -d /opt/render/project/bin
-
-echo "...Cleaning Up..."
-rm /tmp/chromedriver.zip
-
-echo "...Adding Chromedriver to Path..."
-export PATH="${PATH}:${CHROMEDRIVER_PATH}"
-echo "Installed Chromedriver Version:"
-chromedriver --version
+# be sure to add Chromes location to the PATH as part of your Start Command
+export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
 
 echo "...Installing packages..."
 

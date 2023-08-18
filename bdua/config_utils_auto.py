@@ -14,7 +14,7 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 
 
@@ -28,10 +28,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 
-    #service = Service(executable_path=CHROMEDRIVER_PATH)
+    service = Service(executable_path=CHROMEDRIVER_PATH)
 
 
     try:
@@ -44,14 +43,14 @@ def initialize_driver():
 
         
         # Opciones para el navegador Chrome
-        # options = webdriver.ChromeOptions()
-        # options.add_argument("--no-sandbox")
-        # options.add_argument("--headless")  
-        # options.add_argument("--disable-extensions") 
-        # options.add_argument("--disable-dev-shm-usage");
-        # options.add_argument("--disable-gpu")
-        # # Inicializar el controlador de Chrome
-        # driver = webdriver.Chrome(service=service, options=options)
+        options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--headless")  
+        options.add_argument("--disable-extensions") 
+        options.add_argument("--disable-dev-shm-usage");
+        options.add_argument("--disable-gpu")
+        # Inicializar el controlador de Chrome
+        driver = webdriver.Chrome(service=service, options=options)
 
             
 
