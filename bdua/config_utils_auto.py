@@ -28,9 +28,9 @@ from selenium.webdriver.support import expected_conditions as EC
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
+    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
 
-
-    service = Service(executable_path=CHROMEDRIVER_PATH)
+    #service = Service(executable_path=CHROMEDRIVER_PATH)
 
 
     try:
@@ -50,7 +50,9 @@ def initialize_driver():
         options.add_argument("--disable-dev-shm-usage");
         options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service, options=options)
+        #driver = webdriver.Chrome(service=service, options=options)
+        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+
 
             
 
