@@ -15,6 +15,9 @@ python manage.py migrate
 CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
 CHROMEDRIVER_PATH="/opt/render/project/bin"
 
+# Agregar las rutas de Chrome y Chromedriver al PATH
+export PATH="${PATH}:${CHROME_PATH}:${CHROMEDRIVER_PATH}"
+
 # Desinstalar Google Chrome si existe
 if [[ -d $CHROME_PATH ]]; then
     echo "Uninstalling Existing Chrome Binary..."
@@ -41,7 +44,6 @@ echo "...Cleaning Up..."
 rm /tmp/google-chrome.deb
 
 echo "...Adding Chrome to Path..."
-export PATH="${PATH}:${CHROME_PATH}"
 echo "Installed Chrome Version:"
 google-chrome --version
 
@@ -56,8 +58,6 @@ unzip /tmp/chromedriver.zip -d /opt/render/project/bin
 echo "Cleaning Up..."
 rm /tmp/chromedriver.zip
 
-echo "Adding Chromedriver to Path..."
-export PATH="${PATH}:${CHROMEDRIVER_PATH}"
 echo "Installed Chromedriver Version:"
 chromedriver --version
 
@@ -66,6 +66,7 @@ echo "Installing packages..."
 # pip install -r requirements.txt
 
 echo "Build Script Completed!"
+
 
 
 
