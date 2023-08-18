@@ -52,12 +52,11 @@ def test_logging(log_path):
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
-    #driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-
-   
+    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
 
 
-    #service = Service(executable_path=CHROMEDRIVER_PATH)
+
+    service = Service(executable_path=CHROMEDRIVER_PATH)
 
 
     try:
@@ -77,8 +76,8 @@ def initialize_driver():
         options.add_argument("--disable-dev-shm-usage");
         options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
-        #driver = webdriver.Chrome(service=service, options=options)
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        driver = webdriver.Chrome(service=service, options=options)
+        
 
             
 
