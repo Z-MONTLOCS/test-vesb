@@ -2,8 +2,8 @@
 
 #!/bin/bash
 
-CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
-CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
+CHROME_PATH='/opt/render/project/bin/chrome/opt/google/chrome'
+CHROMEDRIVER_PATH='/opt/render/project/bin/chromedriver'
 
 # Desinstalar Chromedriver si existe
 if [[ -d $CHROMEDRIVER_PATH ]]; then
