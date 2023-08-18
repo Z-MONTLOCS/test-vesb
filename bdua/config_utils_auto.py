@@ -33,50 +33,100 @@ import logging
 
 
 
-def initialize_driver():
+# def initialize_driver():
 
      
-    print("=======================================")
-    print("Inicializado:")
-    print("*******************************************")
+#     print("=======================================")
+#     print("Inicializado:")
+#     print("*******************************************")
 
 
-    #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
+#     #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
 
-    CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+#     CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+#     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
 
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-
-
-
-    service = Service(executable_path=CHROMEDRIVER_PATH)
+#     driver = webdriver.Chrome(CHROMEDRIVER_PATH)
 
 
-    try:
+
+#     service = Service(executable_path=CHROMEDRIVER_PATH)
+
+
+#     try:
         
-        print("=======================================")
-        print("Versión de Selenium:", selenium.__version__)
-        print("*******************************************")
+#         print("=======================================")
+#         print("Versión de Selenium:", selenium.__version__)
+#         print("*******************************************")
 
 
 
       
-        options = webdriver.ChromeOptions()
-        options.add_argument("--no-sandbox")
-        options.add_argument("--headless")  
-        options.add_argument("--disable-extensions") 
-        options.add_argument("--disable-dev-shm-usage");
-        options.add_argument("--disable-gpu")
-        # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service, options=options)
-        #driver = webdriver.Chrome(options=options)
+#         options = webdriver.ChromeOptions()
+#         options.add_argument("--no-sandbox")
+#         options.add_argument("--headless")  
+#         options.add_argument("--disable-extensions") 
+#         options.add_argument("--disable-dev-shm-usage");
+#         options.add_argument("--disable-gpu")
+#         # Inicializar el controlador de Chrome
+#         driver = webdriver.Chrome(service=service, options=options)
+#         #driver = webdriver.Chrome(options=options)
 
         
 
             
 
-        # URL del sitio web
+#         # URL del sitio web
+#         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
+#         driver.get(website)
+
+#         # Configuración de cliente DeathByCaptcha
+#         username = "zyrivic"
+#         password = "5RL:6dRdfadS#Hc"
+#         client = HttpClient(username, password)
+
+#         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
+#         try:
+#             WebDriverWait(driver, 15).until(
+#                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
+#             )
+
+#             print("Página cargada correctamente.")
+#         except Exception as e:
+#             print("Error al cargar la página:", e)
+#             driver.quit()
+#             raise
+
+#         return driver, client
+#     except Exception as e:
+#         print("Error al inicializar el controlador:", e)
+#         raise
+
+
+
+def initialize_driver():
+    try:
+        print("=======================================")
+        print("Inicializado:")
+        print("*******************************************")
+
+        CHROME_PATH = "/opt/render/project/bin/chrome-linux64"
+        CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver-linux64"
+
+        options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--headless")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+
+        # Inicializar el controlador de Chrome
+        driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options)
+        
+        print("=======================================")
+        print("Versión de Selenium:", webdriver.__version__)
+        print("*******************************************")
+
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
 
@@ -90,7 +140,6 @@ def initialize_driver():
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
             )
-
             print("Página cargada correctamente.")
         except Exception as e:
             print("Error al cargar la página:", e)
@@ -98,10 +147,20 @@ def initialize_driver():
             raise
 
         return driver, client
+
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
 
+# Llamada a la función principal
+try:
+    driver, client = initialize_driver()
+    # Hacer más operaciones con el driver y el cliente aquí
+
+finally:
+    # Asegurarse de cerrar el driver al final, independientemente de si hubo una excepción o no
+    if driver:
+        driver.quit()
 
 
 
