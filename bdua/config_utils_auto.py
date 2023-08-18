@@ -49,14 +49,14 @@ from selenium.webdriver.support import expected_conditions as EC
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
-    # Crear un objeto de servicio para Chromedriver
-    service = webdriver.chrome.service.Service(CHROMEDRIVER_PATH)
-
     try:
-        # Configuración de opciones de Chrome
+        # Opciones para el navegador Chrome
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')  # Ejecutar en modo headless
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        chrome_options.add_argument("--headless")  # Modo sin cabeza (sin GUI)
+        chrome_options.add_argument("--no-sandbox")  # Ejecución en entorno seguro
+
+        # Inicializar el controlador de Chrome
+        driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=chrome_options)
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
@@ -83,6 +83,7 @@ def initialize_driver():
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
+
 
 
 
