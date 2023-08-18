@@ -34,29 +34,33 @@ else
     echo "...Detected Existing Chrome Binary"
 fi
 
-if [[ ! -d $CHROMEDRIVER_PATH ]]; then
-    echo "...Downloading Chromedriver..."
-    CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-    wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
 
-    echo "...Installing Chromedriver..."
+
+if [[ ! -d $CHROMEDRIVER_PATH ]]; then
+    echo "Downloading Chromedriver..."
+    CHROMEDRIVER_URL="https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip"
+    wget -O /tmp/chromedriver.zip "$CHROMEDRIVER_URL"
+
+    echo "Installing Chromedriver..."
     unzip /tmp/chromedriver.zip -d /opt/render/project/bin
 
-    echo "...Cleaning Up..."
+    echo "Cleaning Up..."
     rm /tmp/chromedriver.zip
 
-    echo "...Adding Chromedriver to Path..."
+    echo "Adding Chromedriver to Path..."
     export PATH="${PATH}:${CHROMEDRIVER_PATH}"
     echo "Installed Chromedriver Version:"
     chromedriver --version
 else
-    echo "...Detected Existing Chromedriver Installation"
+    echo "Detected Existing Chromedriver Installation"
 fi
 
-echo "...Installing packages..."
-#pip install -r requirements.txt
+echo "Installing packages..."
+# Puedes descomentar esta línea para instalar los paquetes de Python desde requirements.txt
+# pip install -r requirements.txt
 
-echo "...Build Script Completed!"
+echo "Build Script Completed!"
+
 
 
 
