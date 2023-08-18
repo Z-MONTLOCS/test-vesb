@@ -7,14 +7,9 @@ from selenium.webdriver.common.by import By
 import requests
 import os
 import time
-from selenium.webdriver.chrome.options import Options
-
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import WebDriverException
 
 
 
@@ -52,42 +47,49 @@ from selenium.common.exceptions import WebDriverException
 
 
 def initialize_driver():
-    CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"
-    CHROME_PATH = "/opt/render/project/bin/chrome/opt/google/chrome"
+    CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
+
     
+
     service = Service(executable_path=CHROMEDRIVER_PATH)
-    
+
+
     try:
-        options = Options()
+        # Opciones para el navegador Chrome
+        options = webdriver.ChromeOptions()
         options.add_argument("--disable-gpu")
-        options.add_argument("--headless")
+        options.add_argument("--headless")  # 
         options.add_argument("--no-sandbox")
-        
-        driver = webdriver.Chrome(service=service, options=options, executable_path=CHROMEDRIVER_PATH, chrome_binary=CHROME_PATH)
-        
+
+
+        # Inicializar el controlador de Chrome
+        driver = webdriver.Chrome(service=service, options=options)
+
+        # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
-        
+
+        # Configuración de cliente DeathByCaptcha
+        username = "zyrivic"
+        password = "5RL:6dRdfadS#Hc"
+        client = HttpClient(username, password)
+
+        # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
             )
-            
+
             print("Página cargada correctamente.")
         except Exception as e:
             print("Error al cargar la página:", e)
             driver.quit()
             raise
-        
-        return driver
-    except WebDriverException as web_driver_exception:
-        print("Error al inicializar el controlador de Selenium:", web_driver_exception.msg)
-        raise
+
+        return driver, client
     except Exception as e:
-        print("Error inesperado:", e)
+        print("Error al inicializar el controlador:", e)
         raise
-
-
 
 
 
