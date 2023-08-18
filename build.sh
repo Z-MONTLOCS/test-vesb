@@ -15,6 +15,7 @@ python manage.py migrate
 CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
 CHROMEDRIVER_PATH="/opt/render/project/bin"
 
+# Verificar si Chrome está instalado
 if [[ ! -d $CHROME_PATH ]]; then
     echo "...Downloading Chrome Binary..."
     wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -34,29 +35,32 @@ else
     echo "...Detected Existing Chrome Binary"
 fi
 
-if [[ ! -d $CHROMEDRIVER_PATH ]]; then
-    echo "...Downloading Chromedriver..."
-    CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-    wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-
-    echo "...Installing Chromedriver..."
-    unzip /tmp/chromedriver.zip -d /opt/render/project/bin
-
-    echo "...Cleaning Up..."
-    rm /tmp/chromedriver.zip
-
-    echo "...Adding Chromedriver to Path..."
-    export PATH="${PATH}:${CHROMEDRIVER_PATH}"
-    echo "Installed Chromedriver Version:"
-    chromedriver --version
-else
-    echo "...Detected Existing Chromedriver Installation"
+# Verificar y reinstalar Chromedriver si es necesario
+if [[ -d $CHROMEDRIVER_PATH ]]; then
+    echo "...Uninstalling Existing Chromedriver..."
+    rm -rf $CHROMEDRIVER_PATH
 fi
+
+echo "...Downloading Chromedriver..."
+CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+
+echo "...Installing Chromedriver..."
+unzip /tmp/chromedriver.zip -d /opt/render/project/bin
+
+echo "...Cleaning Up..."
+rm /tmp/chromedriver.zip
+
+echo "...Adding Chromedriver to Path..."
+export PATH="${PATH}:${CHROMEDRIVER_PATH}"
+echo "Installed Chromedriver Version:"
+chromedriver --version
 
 echo "...Installing packages..."
 #pip install -r requirements.txt
 
 echo "...Build Script Completed!"
+
 
 
 

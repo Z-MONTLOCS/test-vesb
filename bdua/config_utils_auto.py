@@ -16,79 +16,63 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
+# def initialize_driver():
+
+#     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
+
+#     #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+#     service = Service(CHROMEDRIVER_PATH)
+
+#     # Inicializar el controlador de Chrome
+#     #driver = webdriver.Chrome(service=service)
+
+
+#     chrome_options = webdriver.ChromeOptions()
+#     chrome_options.add_argument('--headless')  # Agregar la opción headless
+#     driver = webdriver.Chrome(service=service, options=chrome_options)
+
+#     # Sitio web donde se encuentra el elemento
+#     website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
+#     driver.get(website)
+
+#     # Configurar el cliente de DeathByCaptcha
+#     username = "zyrivic"
+#     password = "5RL:6dRdfadS#Hc"
+#     client = HttpClient(username, password)
+
+#     return driver, client
+
+
+
+
+
 def initialize_driver():
+    CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
-
-    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-    service = Service(CHROMEDRIVER_PATH)
-
-    # Inicializar el controlador de Chrome
-    #driver = webdriver.Chrome(service=service)
-
-
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')  # Agregar la opción headless
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-
-    # Sitio web donde se encuentra el elemento
-    website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
-    driver.get(website)
-
-    # Configurar el cliente de DeathByCaptcha
-    username = "zyrivic"
-    password = "5RL:6dRdfadS#Hc"
-    client = HttpClient(username, password)
-
-    return driver, client
-
-
-
-
-
-def initialize_driver():
-
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
-
-    
-    #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-    service = Service(CHROMEDRIVER_PATH)
+    # Crear un objeto de servicio para Chromedriver
+    service = webdriver.chrome.service.Service(CHROMEDRIVER_PATH)
 
     try:
-        # Inicializar el controlador de Chrome
-        #driver = webdriver.Chrome(service=service)
-
-       
+        # Configuración de opciones de Chrome
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')  # Agregar la opción headless
+        chrome_options.add_argument('--headless')  # Ejecutar en modo headless
         driver = webdriver.Chrome(service=service, options=chrome_options)
 
-        # Sitio web donde se encuentra el elemento
+        # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
 
-         # Configurar el cliente de DeathByCaptcha
+        # Configuración de cliente DeathByCaptcha
         username = "zyrivic"
         password = "5RL:6dRdfadS#Hc"
         client = HttpClient(username, password)
-
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
-
-
             )
 
-            
-            #      # Ocultar el botón utilizando JavaScript
-            # hide_script = "document.getElementById('btnConsultar').style.display   = 'none';"
-            # driver.execute_script(hide_script)
-
-
-            
-           
             print("Página cargada correctamente.")
         except Exception as e:
             print("Error al cargar la página:", e)
