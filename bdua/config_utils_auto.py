@@ -47,7 +47,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def initialize_driver():
-    CHROMEDRIVER_PATH = '/opt/render/project/bin/chromedriver'  # Ruta a Chromedriver
+    CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
+
+    
 
     service = Service(executable_path=CHROMEDRIVER_PATH)
 
@@ -55,7 +57,10 @@ def initialize_driver():
     try:
         # Opciones para el navegador Chrome
         options = webdriver.ChromeOptions()
+        options.add_argument("--disable-gpu")
         options.add_argument("--headless")  # 
+        options.add_argument("--no-sandbox")
+
 
         # Inicializar el controlador de Chrome
         driver = webdriver.Chrome(service=service, options=options)
