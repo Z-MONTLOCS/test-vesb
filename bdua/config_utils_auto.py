@@ -35,19 +35,19 @@ import logging
 
 def initialize_driver():
 
-     
+    print("=======================================")
+    print("Versión de Selenium:", selenium.__version__)
+    print("*******************************************")
+        
   
 
     try:
 
         
-        print("=======================================")
-        print("Versión de Selenium:", selenium.__version__)
-        print("*******************************************")
-        
+       
 
         print("=======================================")
-        print("Inicializado:")
+        print("Inicializado: Linea 50")
         print("*******************************************")
 
 
@@ -56,10 +56,16 @@ def initialize_driver():
         CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
 
         CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+        print("=======================================")
+        print("Linea 58")
+        print("*******************************************")
+
         driver = webdriver.Chrome(CHROMEDRIVER_PATH)
         service = Service(executable_path=CHROMEDRIVER_PATH)
 
-      
+        print("=======================================")
+        print("Linea 66")
+        print("*******************************************")
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
         options.add_argument("--headless")  
