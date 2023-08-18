@@ -122,18 +122,13 @@ def initialize_driver():
 
         # Inicializar el controlador de Chrome
         driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options)
-        
+
         print("=======================================")
         print("Versión de Selenium:", webdriver.__version__)
         print("*******************************************")
 
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
-
-        # Configuración de cliente DeathByCaptcha
-        username = "zyrivic"
-        password = "5RL:6dRdfadS#Hc"
-        client = HttpClient(username, password)
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
@@ -146,7 +141,7 @@ def initialize_driver():
             driver.quit()
             raise
 
-        return driver, client
+        return driver
 
     except Exception as e:
         print("Error al inicializar el controlador:", e)
@@ -154,8 +149,11 @@ def initialize_driver():
 
 # Llamada a la función principal
 try:
-    driver, client = initialize_driver()
-    # Hacer más operaciones con el driver y el cliente aquí
+    driver = initialize_driver()
+    # Hacer más operaciones con el driver aquí
+    
+    # Ejemplo: Hacer una captura de pantalla
+    driver.save_screenshot("screenshot.png")
 
 finally:
     # Asegurarse de cerrar el driver al final, independientemente de si hubo una excepción o no
