@@ -1,12 +1,15 @@
-import time
+import unittest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+class GoogleTestCase(unittest.TestCase):
 
-driver.get("http://www.python.org")
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.addCleanup(self.browser.quit)
 
-time.sleep(2)
+    def test_page_title(self):
+        self.browser.get('http://www.google.com')
+        self.assertIn('Google', self.browser.title)
 
-driver.close()
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
