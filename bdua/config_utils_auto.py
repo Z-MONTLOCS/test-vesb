@@ -17,7 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def initialize_driver():
-    path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    path = 'C:/Users/chromedriver-win64/chromedriver'
     service = Service(path)
 
     # Inicializar el controlador de Chrome
