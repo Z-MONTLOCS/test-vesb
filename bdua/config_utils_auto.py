@@ -71,11 +71,19 @@ def initialize_driver():
 
 
         CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+        print("************************Linea 73 *******************")
 
         driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+        print("************************Linea 76 *******************")
+
         service = Service(executable_path=CHROMEDRIVER_PATH)
 
+        print("************************Linea 79 *******************")
+
+
         driver = webdriver.Chrome(service=service, options=options)
+        print("************************Linea 84 *******************")
+
         #driver = webdriver.Chrome(options=options)
 
         
