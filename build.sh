@@ -15,18 +15,36 @@ python manage.py migrate
 CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
 CHROMEDRIVER_PATH="/opt/render/project/bin"
 
+# Verificar si Chrome está instalado
+if [[ ! -d $CHROME_PATH ]]; then
+    echo "...Downloading Chrome Binary..."
+    wget -O /tmp/google-chrome.deb https://www.slimjet.com/chrome/download-chrome.php?file=files%2F104.0.5112.102%2Fgoogle-chrome-stable_current_amd64.deb
+
+    echo "...Installing Chrome Binary..."
+    mkdir -p /opt/render/project/bin/chrome
+    dpkg -x /tmp/google-chrome.deb /opt/render/project/bin/chrome
+
+    echo "...Cleaning Up..."
+    rm /tmp/google-chrome.deb
+
+    echo "...Adding Chrome to Path..."
+    export PATH="${PATH}:${CHROME_PATH}"
+    echo "Installed Chrome Version:"
+    google-chrome --version
+else
+    echo "...Detected Existing Chrome Binary"
+fi
+
 # Verificar y reinstalar Chromedriver si es necesario
 if [[ -d $CHROMEDRIVER_PATH ]]; then
     echo "...Uninstalling Existing Chromedriver..."
     rm -rf $CHROMEDRIVER_PATH
 fi
 
+# Descargar Chromedriver compatible con la versión de Chrome
 echo "...Fetching Latest Chromedriver Version..."
-CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-echo "Latest Chromedriver Version: $CHROMEDRIVER_VERSION"
-
-echo "...Downloading Chromedriver..."
-wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_104.0.5112.102`
+wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
 
 echo "...Installing Chromedriver..."
 unzip /tmp/chromedriver.zip -d /opt/render/project/bin
@@ -39,30 +57,11 @@ export PATH="${PATH}:${CHROMEDRIVER_PATH}"
 echo "Installed Chromedriver Version:"
 chromedriver --version
 
-# Instalar una versión compatible de Chrome
-CHROME_VERSION=$(chromedriver --version | grep -oP 'Chrome \K([0-9]+)')
-echo "Required Chrome Version: $CHROME_VERSION"
-
-# Descargar e instalar Chrome compatible
-echo "...Downloading Compatible Chrome Binary..."
-wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_$CHROME_VERSION.0.5845.96_amd64.deb
-
-echo "...Installing Compatible Chrome Binary..."
-mkdir -p /opt/render/project/bin/chrome
-dpkg -x /tmp/google-chrome.deb /opt/render/project/bin/chrome
-
-echo "...Cleaning Up..."
-rm /tmp/google-chrome.deb
-
-echo "...Adding Chrome to Path..."
-export PATH="${PATH}:${CHROME_PATH}"
-echo "Installed Chrome Version:"
-google-chrome --version
-
 echo "...Installing packages..."
 #pip install -r requirements.txt
 
 echo "...Build Script Completed!"
+
 
 
 
