@@ -21,9 +21,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 import logging
 
-
-
-
+import chromedriver_autoinstaller
 
 
 
@@ -70,23 +68,25 @@ def initialize_driver():
         # Inicializar el controlador de Chrome
 
 
-        CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
-        print("************************Linea 73 *******************")
+        # CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+        # print("************************Linea 73 *******************")
 
-        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-        print("************554************Linea 76 *******************")
+        # driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+        # print("************554************Linea 76 *******************")
 
-        service = Service(executable_path=CHROMEDRIVER_PATH)
+        # service = Service(executable_path=CHROMEDRIVER_PATH)
 
-        print("************************Linea 79 *******************")
+        # print("************************Linea 79 *******************")
 
 
-        driver = webdriver.Chrome(service=service, options=options)
-        print("************************Linea 84 *******************")
+        # driver = webdriver.Chrome(service=service, options=options)
+        # print("************************Linea 84 *******************")
 
         #driver = webdriver.Chrome(options=options)
 
         
+        chromedriver_autoinstaller.install()
+        driver = webdriver.Chrome()
 
             
 
