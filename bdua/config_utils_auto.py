@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -7,40 +8,18 @@ from selenium.webdriver.common.by import By
 import requests
 import os
 import time
+import selenium
+
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 
 
 
-# def initialize_driver():
-
-#     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
-
-#     #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
-#     service = Service(CHROMEDRIVER_PATH)
-
-#     # Inicializar el controlador de Chrome
-#     #driver = webdriver.Chrome(service=service)
-
-
-#     chrome_options = webdriver.ChromeOptions()
-#     chrome_options.add_argument('--headless')  # Agregar la opción headless
-#     driver = webdriver.Chrome(service=service, options=chrome_options)
-
-#     # Sitio web donde se encuentra el elemento
-#     website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
-#     driver.get(website)
-
-#     # Configurar el cliente de DeathByCaptcha
-#     username = "zyrivic"
-#     password = "5RL:6dRdfadS#Hc"
-#     client = HttpClient(username, password)
-
-#     return driver, client
 
 
 
@@ -49,25 +28,32 @@ from selenium.webdriver.support import expected_conditions as EC
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
-    
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
-    service = Service(executable_path=CHROMEDRIVER_PATH)
+
+    #service = Service(executable_path=CHROMEDRIVER_PATH)
 
 
     try:
-        # Opciones para el navegador Chrome
-        options = webdriver.ChromeOptions()
-        options.add_argument("--no-sandbox")
-        options.add_argument("--headless")  
-        options.add_argument("--disable-extensions") 
-        options.add_argument("--disable-dev-shm-usage");
-
-        options.add_argument("--disable-gpu")
         
+        print("=======================================")
+        print("Versión de Selenium:", selenium.__version__)
+        print("*******************************************")
 
 
-        # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service, options=options)
+
+        
+        # Opciones para el navegador Chrome
+        # options = webdriver.ChromeOptions()
+        # options.add_argument("--no-sandbox")
+        # options.add_argument("--headless")  
+        # options.add_argument("--disable-extensions") 
+        # options.add_argument("--disable-dev-shm-usage");
+        # options.add_argument("--disable-gpu")
+        # # Inicializar el controlador de Chrome
+        # driver = webdriver.Chrome(service=service, options=options)
+
+            
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
