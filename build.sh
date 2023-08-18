@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 
 STORAGE_DIR=/opt/render/project/.render
