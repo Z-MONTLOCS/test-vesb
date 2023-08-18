@@ -18,6 +18,8 @@ if [[ -d $CHROMEDRIVER_PATH ]]; then
     rm -rf $CHROMEDRIVER_PATH
 fi
 
+
+
 if [[ ! -d $CHROME_PATH ]]; then
     echo "...Downloading Chrome Binary..."
     wget -O /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -46,6 +48,9 @@ unzip /tmp/chromedriver.zip -d /opt/render/project/bin
 
 echo "...Cleaning Up..."
 rm /tmp/chromedriver.zip
+
+
+
 
 echo "...Adding Chromedriver to Path..."
 export PATH="${PATH}:${CHROMEDRIVER_PATH}"
