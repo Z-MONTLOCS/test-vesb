@@ -22,7 +22,7 @@ def initialize_driver():
 
     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
 
-    options = options(CHROMEDRIVER_PATH)
+    service = Service(CHROMEDRIVER_PATH)
 
 
     
@@ -35,25 +35,15 @@ def initialize_driver():
     #driver = webdriver.Chrome(service=service)
 
 
-    
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--no-sandbox");
 
-    options = webdriver.ChromeOptions()
-    options.add_argument('--no-sandbox')
-    options.add_argument('--headless')
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--disable-extensions')
-    options.add_argument('--disable-gpu')
-        
+    chrome_options.add_argument('--headless')  # Agregar la opción headless
 
-    driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(90)
-
-
-
-
-
-
+    #chrome_options.add_argument("--no-sandbox");
+    chrome_options.add_argument("--disable-dev-shm-usage");
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # Sitio web donde se encuentra el elemento
     website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
@@ -77,24 +67,22 @@ def initialize_driver():
     CHROME_BINARY_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
     CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
 
-    options = options(CHROMEDRIVER_PATH)
- 
+    service = Service(CHROMEDRIVER_PATH)
+
     try:
         # Inicializar el controlador de Chrome
-       # driver = webdriver.Chrome(service=service)
+        #driver = webdriver.Chrome(service=service)
 
        
-        options = webdriver.ChromeOptions()
-        options.add_argument('--no-sandbox')
-        options.add_argument('--headless')
-        options.add_argument('--ignore-certificate-errors')
-        options.add_argument('--disable-dev-shm-usage')
-        options.add_argument('--disable-extensions')
-        options.add_argument('--disable-gpu')
-        
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--no-sandbox");
 
-        driver = webdriver.Chrome(options=options)
-        driver.set_page_load_timeout(90)
+        chrome_options.add_argument('--headless')  # Agregar la opción headless
+
+        chrome_options.add_argument("--disable-dev-shm-usage");
+        chrome_options.add_argument('--remote-debugging-port=9222')
+
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
         
 
