@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "...Installing packages..."
 
 #pip install -r requirements.txt
@@ -15,48 +14,29 @@ python manage.py migrate
 
 echo "...Build Script Completed!"
 
-CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
-CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Cambia esta ruta según la ubicación real de chromedriver
 
-# Desinstalar Chromedriver si existe
-if [[ -d $CHROMEDRIVER_PATH ]]; then
-    echo "...Uninstalling Existing Chromedriver..."
-    rm -rf $CHROMEDRIVER_PATH
-fi
 
-if [[ ! -d $CHROME_PATH ]]; then
-    echo "...Downloading Chrome Binary..."
-    wget -O /tmp/google-chrome.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chrome-linux64.zip
 
-    echo "...Installing Chrome Binary..."
-    mkdir -p /opt/render/project/bin/chrome
-    unzip /tmp/google-chrome.zip -d /opt/render/project/bin/chrome
 
-    echo "...Cleaning Up..."
-    rm /tmp/google-chrome.zip
+STORAGE_DIR=/opt/render/project/.render
 
-    echo "...Adding Chrome to Path..."
-    export PATH="${PATH}:${CHROME_PATH}"
-    echo "Installed Chrome Version:"
-    google-chrome --version
+if [[ ! -d $STORAGE_DIR/chrome ]]; then
+  echo "...Downloading Chrome"
+  mkdir -p $STORAGE_DIR/chrome
+  cd $STORAGE_DIR/chrome
+  wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
+  rm ./google-chrome-stable_current_amd64.deb
+  cd $HOME/project/src # Make sure we return to where we were
 else
-    echo "...Detected Existing Chrome Binary"
+  echo "...Using Chrome from cache"
 fi
 
-echo "...Downloading Chromedriver..."
-wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
+# be sure to add Chromes location to the PATH as part of your Start Command
+export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
 
-echo "...Installing Chromedriver..."
-unzip /tmp/chromedriver.zip -d /opt/render/project/bin
+# add your own build commands...
 
-echo "...Cleaning Up..."
-rm /tmp/chromedriver.zip
-
-# Agregar la ruta al directorio chromedriver a la variable de entorno PATH
-export PATH="${PATH}:${CHROMEDRIVER_PATH}"
-
-echo "Installed Chromedriver Version:"
-chromedriver --version
 
 
 
