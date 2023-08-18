@@ -15,6 +15,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+# selenium 4
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 
@@ -28,7 +31,10 @@ from selenium.webdriver.support import expected_conditions as EC
 def initialize_driver():
     CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
 
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+    #driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+
+   
+
 
     #service = Service(executable_path=CHROMEDRIVER_PATH)
 
@@ -51,8 +57,7 @@ def initialize_driver():
         options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
         #driver = webdriver.Chrome(service=service, options=options)
-        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
             
 
