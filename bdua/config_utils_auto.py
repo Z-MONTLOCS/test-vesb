@@ -147,18 +147,6 @@ def initialize_driver():
         print("Error al inicializar el controlador:", e)
         raise
 
-# Llamada a la función principal
-try:
-    driver = initialize_driver()
-    # Hacer más operaciones con el driver aquí
-    
-    # Ejemplo: Hacer una captura de pantalla
-    driver.save_screenshot("screenshot.png")
-
-finally:
-    # Asegurarse de cerrar el driver al final, independientemente de si hubo una excepción o no
-    if driver:
-        driver.quit()
 
 
 
