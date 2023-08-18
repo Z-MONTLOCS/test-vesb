@@ -41,7 +41,10 @@ def initialize_driver():
     print("*******************************************")
 
 
-    CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  # Ruta a Chromedriver
+    #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
+
+    CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
 
     driver = webdriver.Chrome(CHROMEDRIVER_PATH)
 

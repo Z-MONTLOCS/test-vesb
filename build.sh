@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
-CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Cambia esta ruta según la ubicación real de chromedriver
+CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
 # Desinstalar Chromedriver si existe
 if [[ -d $CHROMEDRIVER_PATH ]]; then
@@ -14,16 +14,17 @@ if [[ ! -d $CHROME_PATH ]]; then
     wget -O /tmp/google-chrome.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chrome-linux64.zip
 
     echo "...Installing Chrome Binary..."
-    mkdir -p /opt/render/project/bin/chrome
-    unzip /tmp/google-chrome.zip -d /opt/render/project/bin/chrome
+    mkdir -p $CHROME_PATH
+    unzip /tmp/google-chrome.zip -d $CHROME_PATH
 
     echo "...Cleaning Up..."
     rm /tmp/google-chrome.zip
 
-    echo "...Adding Chrome to Path..."
+    # Agregar la ubicación de Chrome al PATH
     export PATH="${PATH}:${CHROME_PATH}"
+
     echo "Installed Chrome Version:"
-    google-chrome --version
+    $CHROME_PATH/chrome --version
 else
     echo "...Detected Existing Chrome Binary"
 fi
@@ -32,7 +33,7 @@ echo "...Downloading Chromedriver..."
 wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
 
 echo "...Installing Chromedriver..."
-unzip /tmp/chromedriver.zip -d /opt/render/project/bin
+unzip /tmp/chromedriver.zip -d $CHROMEDRIVER_PATH
 
 echo "...Cleaning Up..."
 rm /tmp/chromedriver.zip
