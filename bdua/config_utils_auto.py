@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -8,49 +7,9 @@ from selenium.webdriver.common.by import By
 import requests
 import os
 import time
-import selenium
-
-import chromedriver_autoinstaller
-
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
-# selenium 4
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-
-import logging
-
-
-import unittest
-from selenium import webdriver
-
-class GoogleTestCase(unittest.TestCase):
-
-    def setUp(self):
-        self.browser = webdriver.Firefox()
-        self.addCleanup(self.browser.quit)
-
-    def test_page_title(self):
-        self.browser.get('http://www.google.com')
-        self.assertIn('Google', self.browser.title)
-
-if __name__ == '__main__':
-    unittest.main(verbosity=2)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -58,50 +17,72 @@ if __name__ == '__main__':
 
 
 def initialize_driver():
+    path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    service = Service(path)
 
-     
-    print("=======================================")
-    print("Inicializado:")
-    print("*******************************************")
+    # Inicializar el controlador de Chrome
+    #driver = webdriver.Chrome(service=service)
 
 
-  
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')  # Agregar la opción headless
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
+    # Sitio web donde se encuentra el elemento
+    website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
+    driver.get(website)
+
+    # Configurar el cliente de DeathByCaptcha
+    username = "zyrivic"
+    password = "5RL:6dRdfadS#Hc"
+    client = HttpClient(username, password)
+
+    return driver, client
+
+
+
+
+
+def initialize_driver():
+    
+    path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    service = Service(path)
 
     try:
-        
-        print("=======================================")
-        print("Versión de Selenium:", selenium.__version__)
-        print("*******************************************")
+        # Inicializar el controlador de Chrome
+        #driver = webdriver.Chrome(service=service)
 
+       
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')  # Agregar la opción headless
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
-
-      
-
-        chromedriver_autoinstaller.install()
-
-        driver = webdriver.Chrome()
-
-        driver.get("http://www.python.org")
-        
-
-            
-
-        # URL del sitio web
+        # Sitio web donde se encuentra el elemento
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
 
-        # Configuración de cliente DeathByCaptcha
+         # Configurar el cliente de DeathByCaptcha
         username = "zyrivic"
         password = "5RL:6dRdfadS#Hc"
         client = HttpClient(username, password)
+
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
+
+
             )
 
+            
+            #      # Ocultar el botón utilizando JavaScript
+            # hide_script = "document.getElementById('btnConsultar').style.display   = 'none';"
+            # driver.execute_script(hide_script)
+
+
+            
+           
             print("Página cargada correctamente.")
         except Exception as e:
             print("Error al cargar la página:", e)
@@ -112,7 +93,6 @@ def initialize_driver():
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
-
 
 
 
