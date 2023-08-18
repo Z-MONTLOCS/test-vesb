@@ -81,7 +81,7 @@ def initialize_driver():
         print("************************Linea 79 *******************")
 
 
-        driver = webdriver.Chrome(service=service, options=options)
+        driver = webdriver.Chrome( options=options)
         print("************************Linea 84 *******************")
 
         #driver = webdriver.Chrome(options=options)
