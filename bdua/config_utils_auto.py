@@ -40,14 +40,11 @@ def initialize_driver():
 
     #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
 
-    CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
-
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+    #CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
 
 
 
-    service = Service(executable_path=CHROMEDRIVER_PATH)
+
 
       
     print("=======================================")
@@ -71,6 +68,13 @@ def initialize_driver():
         options.add_argument("--disable-dev-shm-usage");
         options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
+
+
+        CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
+
+        driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+        service = Service(executable_path=CHROMEDRIVER_PATH)
+
         driver = webdriver.Chrome(service=service, options=options)
         #driver = webdriver.Chrome(options=options)
 
