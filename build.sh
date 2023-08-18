@@ -41,9 +41,8 @@ if [[ -d $CHROMEDRIVER_PATH ]]; then
     rm -rf $CHROMEDRIVER_PATH
 fi
 
-# Descargar Chromedriver compatible con la versión de Chrome
-echo "...Fetching Latest Chromedriver Version..."
-CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_104.0.5112.102`
+echo "...Downloading Chromedriver..."
+CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
 wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
 
 echo "...Installing Chromedriver..."
@@ -61,7 +60,6 @@ echo "...Installing packages..."
 #pip install -r requirements.txt
 
 echo "...Build Script Completed!"
-
 
 
 
