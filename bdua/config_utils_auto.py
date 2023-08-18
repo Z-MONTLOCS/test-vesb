@@ -22,13 +22,12 @@ def initialize_driver():
     service = Service(CHROMEDRIVER_PATH)
 
     # Inicializar el controlador de Chrome
-    driver = webdriver.Chrome(service=service)
+   #driver = webdriver.Chrome(service=service)
 
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')  # Agregar la opción headless
-    #chrome_options.add_argument('--remote-debugging-port=9222')
-    #driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # Sitio web donde se encuentra el elemento
     website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
@@ -50,20 +49,21 @@ def initialize_driver():
     #path = 'C:/Users/chromedriver-win64/chromedriver.exe'
     #service = Service(path)
 
-    CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
-    service = Service(CHROMEDRIVER_PATH)
+    
 
     
 
     try:
         # Inicializar el controlador de Chrome
-        driver = webdriver.Chrome(service=service)
+        #driver = webdriver.Chrome(service=service)
+
+        CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver"
+        service = Service(CHROMEDRIVER_PATH)
 
        
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
-        #Schrome_options.add_argument('--remote-debugging-port=9222')
-        #driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
         # Sitio web donde se encuentra el elemento
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
