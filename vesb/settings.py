@@ -40,7 +40,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 DEBUG = 'RENDER' not in os.environ
 
 # ChromeDriver path configuration
-CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/.render/chrome/opt/google/chrome/google-chrome')
+CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH',  default='/opt/render/project/.render/chrome/opt/google/chrome/google-chrome')
 
 
 #ALLOWED_HOSTS = []

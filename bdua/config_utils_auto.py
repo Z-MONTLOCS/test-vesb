@@ -38,17 +38,20 @@ def test_get_chrome_version():
 def initialize_driver():
 
    
+    CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
+    SECRET_KEY = os.environ.get('CHROMEDRIVER_PATH')
+
 
 
     #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
 
     #CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
 
+    print("************************Linea 94 SSECRET_KEY *******************",SECRET_KEY)
 
 
-    print("************************Linea 94 *******************",chromedriver_path,CHROMEDRIVER_PATH)
+    print("************************Linea 94 chromedriver_path*******************",CHROMEDRIVER_PATH)
 
-    CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/.render/chrome/opt/google/chrome/google-chrome')
       
     print("=======================================")
     print("la ruta  es:",chromedriver_path,CHROMEDRIVER_PATH)
