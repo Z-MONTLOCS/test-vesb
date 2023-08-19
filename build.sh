@@ -64,7 +64,7 @@ echo "Installed Chromedriver Version:"
 #$CHROME_PATH/chrome-linux64/chromedriver --version
 
 echo "Installed Chromedriver Version:"
-$CHROMEDRIVER_PATH/chromedriver --version
+$CHROMEDRIVER_PATH/chrome-linux64/chromedriver --version
 
 
 
