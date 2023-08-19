@@ -91,10 +91,15 @@ def initialize_driver():
 
        
         print("************************Linea 94 *******************")
-
-        
+    # Instalar el controlador automáticamente si no está instalado
         chromedriver_autoinstaller.install()
-        driver = webdriver.Chrome()
+
+        # Configurar opciones de Chrome
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.binary_location = "/opt/render/project/.render/chrome/opt/google/chrome/google-chrome"
+
+        # Crear el objeto del controlador con la configuración
+        driver = webdriver.Chrome(chrome_options=chrome_options)
 
         #driver = webdriver.Chrome(options=options)
 
