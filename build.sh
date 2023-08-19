@@ -16,7 +16,7 @@ echo "...Build Script Completed!"
 
 
 CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
-CHROMEDRIVER_PATH="/opt/render/project/bin"  # Ruta donde se instala Chromedriver
+CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
 # Desinstalar Chromedriver si existe
 if [[ -d $CHROMEDRIVER_PATH ]]; then
@@ -64,8 +64,7 @@ echo "Installed Chromedriver Version:"
 #$CHROME_PATH/chrome-linux64/chromedriver --version
 
 echo "Installed Chromedriver Version:"
-$CHROMEDRIVER_PATH/chrome-linux64/chromedriver --version
-
+$CHROMEDRIVER_PATH/chromedriver-linux64 --version
 
 
 
