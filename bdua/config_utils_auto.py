@@ -91,15 +91,22 @@ def initialize_driver():
         #driver = webdriver.Chrome(service=service)
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
+
         print("************ CHROMEDRIVER_PATH Linea 87 **************",CHROMEDRIVER_PATH )
 
         service = Service(CHROMEDRIVER_PATH)
 
+        print("************ CHROMEDRIVER_PATH Linea 99 **************",CHROMEDRIVER_PATH )
+
+
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
+
+        print("************ CHROMEDRIVER_PATH Linea 102 **************",CHROMEDRIVER_PATH )
+
         driver = webdriver.Chrome(service=service, options=chrome_options)
         
-        print("************ Driver Linea 100 **************" )
+        print("************ Driver Linea 106 **************" )
 
 
         # Sitio web donde se encuentra el elemento
