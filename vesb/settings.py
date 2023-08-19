@@ -43,7 +43,7 @@ DEBUG = 'RENDER' not in os.environ
 
 CHROME_PATH = os.environ.get('CHROME_PATH',  default='/opt/render/project/bin/chrome/opt/google/chrome')
 
-CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH',  default='/opt/render/project/bin')
+CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH',  default='/opt/render/project/bin/chromedriver-linux64')
 
 
 

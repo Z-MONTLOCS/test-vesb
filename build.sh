@@ -13,10 +13,14 @@ python manage.py migrate
 
 echo "...Build Script Completed!"
 
-#!/bin/bash
+
+#CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
+#CHROMEDRIVER_PATH="/opt/render/project/bin"
+
+
 
 CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
-CHROMEDRIVER_PATH="/opt/render/project/bin"
+CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Cambia esta ruta según la ubicación real de chromedriver
 
 # Desinstalar Chromedriver si existe
 if [[ -d $CHROMEDRIVER_PATH ]]; then
@@ -52,8 +56,9 @@ unzip /tmp/chromedriver.zip -d /opt/render/project/bin
 echo "...Cleaning Up..."
 rm /tmp/chromedriver.zip
 
-echo "...Adding Chromedriver to Path..."
+# Agregar la ruta al directorio chromedriver a la variable de entorno PATH
 export PATH="${PATH}:${CHROMEDRIVER_PATH}"
+
 echo "Installed Chromedriver Version:"
 chromedriver --version
 
