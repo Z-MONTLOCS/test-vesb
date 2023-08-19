@@ -42,7 +42,7 @@ if [[ ! -d $CHROME_PATH ]]; then
     export PATH="${PATH}:${CHROME_PATH}"
 
     echo "Installed Chrome Version:"
-    /opt/render/project/bin/chrome/opt/google/chrome/chrome --version
+    #/opt/render/project/bin/chrome/opt/google/chrome/chrome --version
 else
     echo "...Detected Existing Chrome Binary"
 fi
