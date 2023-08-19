@@ -104,7 +104,7 @@ def initialize_driver():
 
         print("************ CHROMEDRIVER_PATH Linea 102 **************",CHROMEDRIVER_PATH )
 
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome( options=chrome_options)
         
         print("************ Driver Linea 106 **************" )
 
