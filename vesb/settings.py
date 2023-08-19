@@ -97,7 +97,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vesb.wsgi.application'
-
+CHROMEDRIVER_PATH='/opt/render/project/.render/chrome/opt/google/chrome/google-chrome'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
