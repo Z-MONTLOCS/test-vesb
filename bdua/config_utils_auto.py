@@ -1,5 +1,4 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -8,27 +7,20 @@ from selenium.webdriver.common.by import By
 import requests
 import os
 import time
-import selenium
+
 
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-# selenium 4
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-
-import logging
-
-import chromedriver_autoinstaller
 
 
-def test_get_chrome_version():
-    from chromedriver_autoinstaller.utils import get_chrome_version
 
-    version = get_chrome_version()
-    assert version is None or version.count(".") == 3
+
+
+
+
 
 
 
@@ -37,114 +29,105 @@ def test_get_chrome_version():
 
 def initialize_driver():
 
-   
+    print("************ Inicio Linea 32 **************" )
+
     CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    print("************ CHROMEDRIVER_PATH Linea 34 **************",CHROMEDRIVER_PATH )
+
+
+    CHROME_PATH = os.environ.get('CHROME_PATH')
+    print("************ CHROME_PATH Linea 38 **************",CHROME_PATH )
 
 
 
-    #CHROMEDRIVER_PATH = "/opt/render/project/bin/chromedriver"  
 
-    #CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+    # path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    # service = Service(path)
 
-    print("************************Linea 94 SSECRET_KEY *******************",SECRET_KEY)
+    service = Service(CHROMEDRIVER_PATH)
 
 
-    print("************************Linea 94 chromedriver_path*******************",CHROMEDRIVER_PATH)
 
-      
-    print("=======================================")
-    print("la ruta  es:",chromedriver_path,CHROMEDRIVER_PATH)
-    print("*******************************************")
 
+    #Inicializar el controlador de Chrome
+    driver = webdriver.Chrome(service=service)
+
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')  # Agregar la opción headless
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    print("************ Driver Linea 57 **************" )
+
+   
+
+
+
+    
+
+
+    # Sitio web donde se encuentra el elemento
+    website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
+    driver.get(website)
+
+    # Configurar el cliente de DeathByCaptcha
+    username = "zyrivic"
+    password = "5RL:6dRdfadS#Hc"
+    client = HttpClient(username, password)
+
+    return driver, client
+
+
+
+
+
+def initialize_driver():
+    
+    # path = 'C:/Users/chromedriver-win64/chromedriver.exe'
+    # service = Service(path)
 
     try:
-        
-        print("=======================================")
-        print("Versión de Selenium:", selenium.__version__)
-        print("*******************************************")
-
-
-
-      
-        options = webdriver.ChromeOptions()
-        options.add_argument("--no-sandbox")
-        options.add_argument("--headless")  
-        options.add_argument("--disable-extensions") 
-        options.add_argument("--disable-dev-shm-usage");
-        options.add_argument("--disable-gpu")
         # Inicializar el controlador de Chrome
+        #driver = webdriver.Chrome(service=service)
+        CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
+        print("************ CHROMEDRIVER_PATH Linea 87 **************",CHROMEDRIVER_PATH )
 
-        # CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  
-        # print("************************Linea 73 *******************")
+        service = Service(CHROMEDRIVER_PATH)
 
-        # driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-        # print("************554************Linea 76 *******************")
-
-        # service = Service(executable_path=CHROMEDRIVER_PATH)
-
-        # print("************************Linea 79 *******************")
-
-
-        # driver = webdriver.Chrome(service=service, options=options)
-        # print("************************Linea 84 *******************")
-
-        #driver = webdriver.Chrome(options=options)
-
-
-       
-        print("************************Linea 94 *******************")
-    # Instalar el controlador automáticamente si no está instalado
-
-        # Configurar opciones de Chrome
         chrome_options = webdriver.ChromeOptions()
-
-        # Obtener la variable de entorno CHROMEDRIVER_PATH
-        chromedriver_path = os.environ.get('CHROMEDRIVER_PATH', None)
-
-        if chromedriver_path:
-     # Configurar la ubicación del controlador de Chrome si la variable está definida
-            chrome_options.binary_location = chromedriver_path
+        chrome_options.add_argument('--headless')  # Agregar la opción headless
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        
+        print("************ Driver Linea 100 **************" )
 
 
-        print("************************Linea 107 *******************")
-
-
-
-        chromedriver_autoinstaller.install()
-
-        # Crear el objeto del controlador con la configuración
-        driver = webdriver.Chrome(chrome_options=chrome_options)
-        #driver = webdriver.Chrome(options=options)
-
-        print("************************Linea 117 *******************")
-
-
-
-        # URL del sitio web
+        # Sitio web donde se encuentra el elemento
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
-
         driver.get(website)
 
-
-
-         # Obtener la versión de Chrome utilizando chromedriver_autoinstaller
-        chrome_version = chromedriver_autoinstaller.get_chrome_version()
-        print("Versión de Chrome:", chrome_version)
-
-
-        # Configuración de cliente DeathByCaptcha
+         # Configurar el cliente de DeathByCaptcha
         username = "zyrivic"
         password = "5RL:6dRdfadS#Hc"
         client = HttpClient(username, password)
+
 
         # Esperar a que cierto elemento esté presente en la página para verificar si la carga fue exitosa
         try:
             WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.ID, 'btnConsultar'))
+
+
             )
 
+            
+            #      # Ocultar el botón utilizando JavaScript
+            # hide_script = "document.getElementById('btnConsultar').style.display   = 'none';"
+            # driver.execute_script(hide_script)
+
+
+            
+           
             print("Página cargada correctamente.")
         except Exception as e:
             print("Error al cargar la página:", e)
@@ -155,7 +138,6 @@ def initialize_driver():
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
-
 
 
 

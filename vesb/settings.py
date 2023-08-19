@@ -39,8 +39,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-# ChromeDriver path configuration
-CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH',  default='/opt/render/project/.render/chrome/opt/google/chrome/google-chrome')
+
+
+CHROME_PATH = os.environ.get('CHROME_PATH',  default='/opt/render/project/bin/chrome/opt/google/chrome')
+
+CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH',  default='/opt/render/project/bin')
+
+
+
+
+
 
 
 #ALLOWED_HOSTS = []

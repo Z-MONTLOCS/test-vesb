@@ -13,21 +13,51 @@ python manage.py migrate
 
 echo "...Build Script Completed!"
 
-STORAGE_DIR=/opt/render/project/.render
+#!/bin/bash
 
-echo "...Downloading Chrome"
-mkdir -p $STORAGE_DIR/chrome
-cd $STORAGE_DIR/chrome
-wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
-rm ./google-chrome-stable_current_amd64.deb
-cd $HOME/project/src # Make sure we return to where we were
+CHROME_PATH="/opt/render/project/bin/chrome/opt/google/chrome"
+CHROMEDRIVER_PATH="/opt/render/project/bin"
 
-# Get path to Chrome executable
-CHROME_EXECUTABLE_PATH="/opt/render/project/.render/chrome/opt/google/chrome/google-chrome"
-echo "Chrome executable path: $CHROME_EXECUTABLE_PATH"
+# Desinstalar Chromedriver si existe
+if [[ -d $CHROMEDRIVER_PATH ]]; then
+    echo "...Uninstalling Existing Chromedriver..."
+    rm -rf $CHROMEDRIVER_PATH
+fi
 
-# be sure to add Chrome's location to the PATH as part of your Start Command
-export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
+if [[ ! -d $CHROME_PATH ]]; then
+    echo "...Downloading Chrome Binary..."
+    wget -O /tmp/google-chrome.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chrome-linux64.zip
 
-# add your own build commands...
+    echo "...Installing Chrome Binary..."
+    mkdir -p /opt/render/project/bin/chrome
+    unzip /tmp/google-chrome.zip -d /opt/render/project/bin/chrome
+
+    echo "...Cleaning Up..."
+    rm /tmp/google-chrome.zip
+
+    echo "...Adding Chrome to Path..."
+    export PATH="${PATH}:${CHROME_PATH}"
+    echo "Installed Chrome Version:"
+    google-chrome --version
+else
+    echo "...Detected Existing Chrome Binary"
+fi
+
+echo "...Downloading Chromedriver..."
+wget -O /tmp/chromedriver.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip
+
+echo "...Installing Chromedriver..."
+unzip /tmp/chromedriver.zip -d /opt/render/project/bin
+
+echo "...Cleaning Up..."
+rm /tmp/chromedriver.zip
+
+echo "...Adding Chromedriver to Path..."
+export PATH="${PATH}:${CHROMEDRIVER_PATH}"
+echo "Installed Chromedriver Version:"
+chromedriver --version
+
+echo "...Installing packages..."
+#pip install -r requirements.txt
+
+echo "...Build Script Completed!"
