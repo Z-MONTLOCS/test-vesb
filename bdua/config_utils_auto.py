@@ -46,11 +46,12 @@ def initialize_driver():
 
 
 
+    print("************************Linea 94 *******************")
 
 
       
     print("=======================================")
-    print("Inicializado:")
+    print("la ruta  es:",chromedriver_path)
     print("*******************************************")
 
 
