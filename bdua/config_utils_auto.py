@@ -24,7 +24,11 @@ import logging
 import chromedriver_autoinstaller
 
 
+def test_get_chrome_version():
+    from chromedriver_autoinstaller.utils import get_chrome_version
 
+    version = get_chrome_version()
+    assert version is None or version.count(".") == 3
 
 
 
@@ -84,14 +88,22 @@ def initialize_driver():
 
         #driver = webdriver.Chrome(options=options)
 
+
+        # Obtener la versión de Chrome
+        chrome_version = driver.capabilities['browserVersion']
+        print("Versión de Chrome:", chrome_version)
+        print("************************Linea 94 *******************")
+
         
         chromedriver_autoinstaller.install()
         driver = webdriver.Chrome()
+        print("************************Linea 99 *******************")
 
             
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
+
         driver.get(website)
 
         # Configuración de cliente DeathByCaptcha
