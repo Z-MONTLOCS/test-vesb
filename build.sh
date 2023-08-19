@@ -57,8 +57,15 @@ rm /tmp/chromedriver.zip
 # Agregar la ruta al directorio chromedriver a la variable de entorno PATH
 export PATH="${PATH}:${CHROMEDRIVER_PATH}"
 
+
 echo "Installed Chromedriver Version:"
-chromedriver --version
+#chromedriver --version
+
+#$CHROME_PATH/chrome-linux64/chromedriver --version
+
+echo "Installed Chromedriver Version:"
+$CHROMEDRIVER_PATH/chromedriver --version
+
 
 echo "...Installing packages..."
 #pip install -r requirements.txt
