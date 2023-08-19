@@ -11,12 +11,7 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
 
-
 echo "...Build Script Completed!"
-
-
-
-
 
 STORAGE_DIR=/opt/render/project/.render
 
@@ -32,23 +27,17 @@ else
   echo "...Using Chrome from cache"
 fi
 
-# be sure to add Chromes location to the PATH as part of your Start Command
+# be sure to add Chrome's location to the PATH as part of your Start Command
 export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
 
 # add your own build commands...
 
+# Uninstall any existing Chrome
+echo "...Uninstalling Chrome (if exists)"
+sudo apt-get remove google-chrome-stable
 
+# Install the downloaded Chrome package
+echo "...Installing Chrome"
+sudo dpkg -i $STORAGE_DIR/chrome/opt/google/chrome/google-chrome-stable_current_amd64.deb
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo "...Chrome Installation Completed"
