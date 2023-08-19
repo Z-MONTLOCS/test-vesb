@@ -92,7 +92,6 @@ def initialize_driver():
        
         print("************************Linea 94 *******************")
     # Instalar el controlador automáticamente si no está instalado
-        chromedriver_autoinstaller.install()
 
         # Configurar opciones de Chrome
         chrome_options = webdriver.ChromeOptions()
@@ -104,13 +103,20 @@ def initialize_driver():
      # Configurar la ubicación del controlador de Chrome si la variable está definida
             chrome_options.binary_location = chromedriver_path
 
+
+        print("************************Linea 107 *******************")
+
+
+
+        chromedriver_autoinstaller.install()
+
         # Crear el objeto del controlador con la configuración
         driver = webdriver.Chrome(chrome_options=chrome_options)
         #driver = webdriver.Chrome(options=options)
 
-        print("************************Linea 99 *******************")
+        print("************************Linea 117 *******************")
 
-            
+
 
         # URL del sitio web
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
