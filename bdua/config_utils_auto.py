@@ -39,7 +39,7 @@ def initialize_driver():
 
    
     CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
-    SECRET_KEY = os.environ.get('CHROMEDRIVER_PATH')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 
