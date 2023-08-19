@@ -39,7 +39,7 @@ if [[ ! -d $CHROME_PATH ]]; then
     export PATH="${PATH}:${CHROME_PATH}"
 
     echo "Installed Chrome Version:"
-    $CHROME_PATH/chrome --version
+    $CHROME_PATH --version
 else
     echo "...Detected Existing Chrome Binary"
 fi
