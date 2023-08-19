@@ -96,11 +96,16 @@ def initialize_driver():
 
         # Configurar opciones de Chrome
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = "/opt/render/project/.render/chrome/opt/google/chrome/google-chrome"
+
+        # Obtener la variable de entorno CHROMEDRIVER_PATH
+        chromedriver_path = os.environ.get('CHROMEDRIVER_PATH', None)
+
+        if chromedriver_path:
+     # Configurar la ubicación del controlador de Chrome si la variable está definida
+            chrome_options.binary_location = chromedriver_path
 
         # Crear el objeto del controlador con la configuración
         driver = webdriver.Chrome(chrome_options=chrome_options)
-
         #driver = webdriver.Chrome(options=options)
 
         print("************************Linea 99 *******************")

@@ -39,6 +39,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
+# ChromeDriver path configuration
+CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/.render/chrome/opt/google/chrome/google-chrome')
+
+
 #ALLOWED_HOSTS = []
 
 
@@ -97,7 +101,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vesb.wsgi.application'
-CHROMEDRIVER_PATH='/opt/render/project/.render/chrome/opt/google/chrome/google-chrome'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
