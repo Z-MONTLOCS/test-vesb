@@ -101,6 +101,9 @@ def initialize_driver():
 
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')  # Agregar la opción headless
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+
 
         print("************ CHROMEDRIVER_PATH Linea 102 **************",CHROMEDRIVER_PATH )
 
