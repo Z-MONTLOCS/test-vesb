@@ -46,12 +46,12 @@ def initialize_driver():
 
 
 
-    print("************************Linea 94 *******************")
+    print("************************Linea 94 *******************",chromedriver_path,CHROMEDRIVER_PATH)
 
-
+    CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/.render/chrome/opt/google/chrome/google-chrome')
       
     print("=======================================")
-    print("la ruta  es:",chromedriver_path)
+    print("la ruta  es:",chromedriver_path,CHROMEDRIVER_PATH)
     print("*******************************************")
 
 
