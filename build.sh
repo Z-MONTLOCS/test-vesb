@@ -32,8 +32,8 @@ else
   echo "...Using Chrome from cache"
 
   # Get path to Chrome executable
-CHROME_EXECUTABLE_PATH=$(which google-chrome)
-echo "Chrome executable path: $CHROME_EXECUTABLE_PATH"
+  CHROME_EXECUTABLE_PATH=$(which google-chrome)
+  echo "Chrome executable path: $CHROME_EXECUTABLE_PATH"
 fi
 
 # be sure to add Chromes location to the PATH as part of your Start Command
