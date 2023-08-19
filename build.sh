@@ -2,6 +2,8 @@
 
 echo "...Installing packages..."
 
+#pip install -r requirements.txt
+
 set -o errexit
 
 pip install -r requirements.txt
@@ -9,7 +11,12 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
 
+
 echo "...Build Script Completed!"
+
+
+
+
 
 STORAGE_DIR=/opt/render/project/.render
 
@@ -23,24 +30,29 @@ if [[ ! -d $STORAGE_DIR/chrome ]]; then
   cd $HOME/project/src # Make sure we return to where we were
 else
   echo "...Using Chrome from cache"
+
+  # Get path to Chrome executable
+CHROME_EXECUTABLE_PATH=$(which google-chrome)
+echo "Chrome executable path: $CHROME_EXECUTABLE_PATH"
 fi
 
-# Get Chrome version
-CHROME_VERSION=$(google-chrome --version 2>/dev/null | awk '{print $3}')
-echo "Installed Chrome version: $CHROME_VERSION"
-
-# Reinstall Chrome
-echo "Reinstalling Chrome..."
-cd $STORAGE_DIR/chrome
-rm -r opt # Remove existing installation
-dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
-echo "Chrome has been reinstalled."
-
-# Get path to Chrome executable
-CHROME_EXECUTABLE_PATH="/opt/render/project/.render/chrome/opt/google/chrome/google-chrome"
-echo "Chrome executable path: $CHROME_EXECUTABLE_PATH"
-
-# Update PATH to include Chrome's location
+# be sure to add Chromes location to the PATH as part of your Start Command
 export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome"
 
 # add your own build commands...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
