@@ -17,7 +17,6 @@ echo "...Build Script Completed!"
 
 CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
 
-
 CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
 
@@ -66,7 +65,9 @@ export PATH="${PATH}:${CHROMEDRIVER_PATH}"
 
 
 echo "Installed Chromedriver Version:"
-$CHROMEDRIVER_PATH/chromedriver-linux64/chromedriver --version
+#$CHROMEDRIVER_PATH/chromedriver-linux64/chromedriver --version
+"$CHROMEDRIVER_PATH/chromedriver-linux64/chromedriver" --version
+
 
 
 
