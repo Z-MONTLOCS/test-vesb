@@ -15,7 +15,7 @@ echo "...Build Script Completed!"
 
 
 
-CHROME_PATH="/opt/render/project/bin/chrome-linux64"  # Ruta donde se instala Chrome
+CHROME_PATH="/opt/render/project/bin/chrome-linux64/chrome-linux64"  # Ruta donde se instala Chrome
 CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
 
