@@ -175,24 +175,25 @@ def initialize_driver():
         print("************ CHROMEDRIVER_PATH Linea 102 **************", CHROMEDRIVER_PATH )
 
         print("************ Driver Linea 106 **************" )
-        chrome_options = webdriver.ChromeOptions()
+        #chrome_options = webdriver.ChromeOptions()
 
-        chrome_options.binary_location = f'{CHROME_PATH}/chrome-linux64/chrome'
-# Cambia esto a la ruta correcta
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument("--disable-extensions")
-        chrome_options.add_argument("--ignore-ssl-errors=true")
-        chrome_options.add_argument("--ignore-certificate-errors")
-        chrome_options.add_argument("--remote-debugging-port=9222")
+        
+
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("--disable-extensions")
+        options.add_argument("--ignore-ssl-errors=true")
+        options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--remote-debugging-port=9222")
         
 
 
-        service = Service(os.path.join(CHROMEDRIVER_PATH, 'chromedriver-linux64', 'chromedriver'))
+        
+        service = Service()
+        options = webdriver.ChromeOptions()
 
-
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=options)
 
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
