@@ -187,6 +187,8 @@ def initialize_driver():
         options.add_argument("--ignore-ssl-errors=true")
         options.add_argument("--ignore-certificate-errors")
         options.add_argument("--remote-debugging-port=9222")
+        options.add_argument('--verbose')
+
         
  
 
