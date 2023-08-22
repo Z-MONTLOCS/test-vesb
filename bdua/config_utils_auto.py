@@ -60,8 +60,8 @@ def initialize_driver():
         chrome_options.add_argument("--remote-debugging-port=9222")
 
     
-        #service = Service(executable_path='./chromedriver.exe')
-        service = Service(executable_path=CHROMEDRIVER_PATH)
+        service = Service(executable_path='/opt/render/project/bin/chromedriver-linux64/chromedriver-linux64/chromedriver')
+        #service = Service(executable_path=CHROMEDRIVER_PATH)
 
         options = webdriver.ChromeOptions()
         driver = webdriver.Chrome(service=service, options=options)
