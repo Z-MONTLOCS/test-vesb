@@ -8,6 +8,9 @@ import requests
 import os
 import time
 
+import subprocess  # Agrega esta línea
+
+
 
 
 from selenium.webdriver.support.ui import WebDriverWait
@@ -28,12 +31,18 @@ def initialize_driver():
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
         print("************ INICIO VERSION Linea 30 **************" )
+        CHROME_PATH = os.environ.get('CHROME_PATH', '/opt/render/project/bin/chrome-linux64')
+        CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/bin/chromedriver-linux64')
 
-         # Mostrar la versión de Chromedriver
-        chromedriver_version_cmd = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver --version"
-        chromedriver_version_output = os.popen(chromedriver_version_cmd).read()
         print("Installed Chromedriver Version:")
+        chromedriver_version_cmd = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver --version"
+        chromedriver_version_output = subprocess.getoutput(chromedriver_version_cmd)
         print(chromedriver_version_output)
+
+        print("Installed Chrome Version:")
+        chrome_version_cmd = f"{CHROME_PATH}/chrome-linux64/chrome --version"
+        chrome_version_output = subprocess.getoutput(chrome_version_cmd)
+        print(chrome_version_output)
 
 
         print("************ FIN VERSION Linea 38 **************" )
