@@ -190,7 +190,10 @@ def initialize_driver():
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         PATH_CHROMEDRIVER_PATH = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
-        driver = webdriver.Chrome(options=options, executable_path=PATH_CHROMEDRIVER_PATH)
+
+        service = Service(executable_path=PATH_CHROMEDRIVER_PATH)
+
+        driver = webdriver.Chrome(service=service, options=options)
     
 
                 
