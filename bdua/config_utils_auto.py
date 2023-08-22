@@ -178,6 +178,7 @@ def initialize_driver():
         #chrome_options = webdriver.ChromeOptions()
 
         
+        options = webdriver.ChromeOptions()
 
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
@@ -187,11 +188,10 @@ def initialize_driver():
         options.add_argument("--ignore-certificate-errors")
         options.add_argument("--remote-debugging-port=9222")
         
-
+ 
 
         
         service = Service()
-        options = webdriver.ChromeOptions()
 
         driver = webdriver.Chrome(service=service, options=options)
 
