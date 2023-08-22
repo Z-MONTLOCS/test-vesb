@@ -17,22 +17,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service as ChromeService
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def initialize_driver():
     
     # path = 'C:/Users/chromedriver-win64/chromedriver.exe'
@@ -43,6 +27,9 @@ def initialize_driver():
         #driver = webdriver.Chrome(service=service)
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
+        CHROME_PATH = os.environ.get('CHROME_PATH')
+
+
 
         print("************ CHROMEDRIVER_PATH Linea 87 **************",CHROMEDRIVER_PATH )
 
@@ -50,13 +37,6 @@ def initialize_driver():
 
         print("************ CHROMEDRIVER_PATH Linea 99 **************",CHROMEDRIVER_PATH )
 
-
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')  # Agregar la opción headless
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument("--disable-extensions")
-        chrome_options.add_argument("--remote-debugging-port=9222")
 
 
         print("************ CHROMEDRIVER_PATH Linea 102 **************",CHROMEDRIVER_PATH )
@@ -68,8 +48,22 @@ def initialize_driver():
 
 
 
-        service = ChromeService()
-        driver = webdriver.Chrome(service=service)
+
+        
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless=new')  # Agregar la opción headless
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument("--disable-extensions")
+        chrome_options.add_argument("--ignore-ssl-errors=true")
+        chrome_options.add_argument("--ignore-certificate-errors")
+        chrome_options.add_argument("--remote-debugging-port=9222")
+
+    
+        chrome_options.binary_location=CHROMEDRIVER_PATH
+
+        
+        driver = webdriver.Chrome(CHROMEDRIVER_PATH,chrome_options=chrome_options)
 
 
         print("************ Driver Linea 106 **************" )
