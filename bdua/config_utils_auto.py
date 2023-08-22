@@ -83,19 +83,24 @@ def initialize_driver():
         chrome_options.add_argument("--remote-debugging-port=9222")
 
         
-# Obtener la ruta completa del ejecutable de Chromedriver
-        chromedriver_executable_path = os.path.join(CHROMEDRIVER_PATH, 'chromedriver')
 
 
-        service = Service(executable_path=chromedriver_executable_path)
 
         #service = Service(executable_path=CHROMEDRIVER_PATH)
 
         options = webdriver.ChromeOptions()
-        driver = webdriver.Chrome(service=service, options=options)
 
 
         print("************ Driver Linea 106 **************" )
+
+        # Ruta deseada
+        path = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
+
+# Imprimir la ruta completa en el nuevo formato
+        print("Path:", path)
+        service = Service(path)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+
 
 
         # Sitio web donde se encuentra el elemento
