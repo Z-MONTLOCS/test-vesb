@@ -14,6 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 
 
@@ -59,9 +60,12 @@ def initialize_driver():
 
 
         print("************ CHROMEDRIVER_PATH Linea 102 **************",CHROMEDRIVER_PATH )
+        #driver =  webdriver.Chrome(service=Service(CHROMEDRIVER_PATH))
 
+        service = ChromeService(executable_path=CHROMEDRIVER_PATH)
         #driver = webdriver.Chrome( service=service, options=chrome_options)
-        driver =  webdriver.Chrome(service=Service(CHROMEDRIVER_PATH))
+        driver = webdriver.Chrome(service=service)
+
 
         print("************ Driver Linea 106 **************" )
 
