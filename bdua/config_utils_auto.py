@@ -176,19 +176,19 @@ def initialize_driver():
 
         print("************ Driver Linea 106 **************" )
 
-        chromedriver_executable_path = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.binary_location = f"{CHROME_PATH}/chrome-linux64/chrome"
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument("--disable-extensions")
+        chrome_options.add_argument("--ignore-ssl-errors=true")
+        chrome_options.add_argument("--ignore-certificate-errors")
+        chrome_options.add_argument("--remote-debugging-port=9222")
 
-        chrome_options = [
-            '--headless',
-            '--no-sandbox',
-            '--disable-dev-shm-usage',
-            "--disable-extensions",
-            "--ignore-ssl-errors=true",
-            "--ignore-certificate-errors",
-            "--remote-debugging-port=9222"
-        ]
+        service = Service(CHROMEDRIVER_PATH)  # No se necesita el argumento "executable_path"
 
-        driver = webdriver.Chrome(executable_path=chromedriver_executable_path, options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
@@ -199,6 +199,7 @@ def initialize_driver():
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
+
 
 
 
