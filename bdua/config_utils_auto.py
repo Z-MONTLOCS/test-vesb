@@ -86,9 +86,7 @@ def initialize_driver():
 
 
 
-        #service = Service(executable_path=CHROMEDRIVER_PATH)
 
-        options = webdriver.ChromeOptions()
 
 
         print("************ Driver Linea 106 **************" )
@@ -98,9 +96,17 @@ def initialize_driver():
 
 # Imprimir la ruta completa en el nuevo formato
         print("Path:", path)
-        service = Service(path)
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        #service = Service(path)
 
+
+
+        #
+        # Crear el objeto de servicio para Selenium
+        chromedriver_executable_path = f"{CHROMEDRIVER_PATH}/chromedriver"
+        service = Service(executable_path=chromedriver_executable_path)
+
+        # Inicializar el controlador WebDriver
+        driver = webdriver.Chrome(service=service)
 
 
         # Sitio web donde se encuentra el elemento
