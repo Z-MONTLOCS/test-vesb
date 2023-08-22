@@ -15,8 +15,8 @@ echo "...Build Script Completed!"
 
 
 
-CHROME_PATH="/opt/render/project/bin"  # Ruta donde se instala Chrome
-CHROMEDRIVER_PATH="/opt/render/project/bin"  # Ruta donde se instala Chromedriver
+CHROME_PATH="/opt/render/project/bin/chrome-linux64/"  # Ruta donde se instala Chrome
+CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
 
 # Desinstalar Chromedriver si existe
@@ -40,7 +40,7 @@ if [[ ! -d $CHROME_PATH ]]; then
     export PATH="${PATH}:${CHROME_PATH}"
 
     echo "Installed Chrome Version:"
-    $CHROME_PATH/chrome --version
+    $CHROME_PATH chrome --version
 
 else
     echo "...Detected Existing Chrome Binary"
@@ -57,8 +57,12 @@ rm /tmp/chromedriver.zip
 
 # Agregar la ruta al directorio chromedriver a la variable de entorno PATH
 export PATH="${PATH}:${CHROMEDRIVER_PATH}"
+
+
+
+
 echo "Installed Chromedriver Version:"
-$CHROMEDRIVER_PATH/chromedriver --version
+$CHROMEDRIVER_PATH/chromedriver-linux64/chromedriver --version
 
 
 
