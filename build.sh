@@ -15,7 +15,7 @@ echo "...Build Script Completed!"
 
 
 
-CHROME_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chrome
+CHROME_PATH="/opt/render/project/bin/chrome-linux64/"  # Ruta donde se instala Chrome
 CHROMEDRIVER_PATH="/opt/render/project/bin/chromedriver-linux64"  # Ruta donde se instala Chromedriver
 
 
@@ -40,7 +40,7 @@ if [[ ! -d $CHROME_PATH ]]; then
     export PATH="${PATH}:${CHROME_PATH}"
 
     echo "Installed Chrome Version:"
-    $CHROME_PATH /chrome --version
+    $CHROME_PATH chrome --version
 
 else
     echo "...Detected Existing Chrome Binary"
