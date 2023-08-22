@@ -82,8 +82,13 @@ def initialize_driver():
         chrome_options.add_argument("--ignore-certificate-errors")
         chrome_options.add_argument("--remote-debugging-port=9222")
 
-    
-        service = Service(executable_path='/opt/render/project/bin/chromedriver-linux64/chromedriver-linux64/chromedriver')
+        
+# Obtener la ruta completa del ejecutable de Chromedriver
+        chromedriver_executable_path = os.path.join(CHROMEDRIVER_PATH, 'chromedriver')
+
+
+        service = Service(executable_path=chromedriver_executable_path)
+
         #service = Service(executable_path=CHROMEDRIVER_PATH)
 
         options = webdriver.ChromeOptions()
