@@ -102,7 +102,7 @@ def initialize_driver():
 
         #
         # Crear el objeto de servicio para Selenium
-        chromedriver_executable_path = f"{CHROMEDRIVER_PATH}/chromedriver"
+        chromedriver_executable_path = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
         service = Service(executable_path=chromedriver_executable_path)
 
         # Inicializar el controlador WebDriver
