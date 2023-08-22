@@ -14,13 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path,include
+# from django.contrib import admin
+# from django.urls import path,include
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('bdua.urls'))
-]
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('',include('bdua.urls'))
+# ]
 
 
 # from django.contrib import admin
@@ -34,6 +34,16 @@ urlpatterns = [
 #     path('api/v1/person/<str:document_type>/<str:identification_number>/', PersonDetail.as_view(), name='person-detail'),
 #     path('', include('bdua.urls')),  # Ajusta esto según el nombre real de la aplicación y su URLconf
 # ]
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    #path('person/', include('bdua.urls')),  # Ruta para la página de persona
+    path('', include('bdua.urls')),  # Ruta para la URL raíz '/'
+]
+
 
 
 
