@@ -10,7 +10,6 @@ import time
 
 import subprocess  # Agrega esta línea
 
-from selenium.webdriver.chrome.options import Options
 
 
 
@@ -178,24 +177,25 @@ def initialize_driver():
         print("************ Driver Linea 106 **************" )
         #chrome_options = webdriver.ChromeOptions()
 
-        options = Options()
-       
-        PATH_CHROME_PATH = f"{CHROME_PATH}/chrome-linux64/chrome"
-       
-
-        options.binary_location =PATH_CHROME_PATH   #chrome binary location specified here
-        options.add_argument("--start-maximized") #open Browser in maximized mode
-        options.add_argument("--no-sandbox") #bypass OS security model
-        options.add_argument("--disable-dev-shm-usage") #overcome limited resource problems
-        options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option('useAutomationExtension', False)
-        PATH_CHROMEDRIVER_PATH = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver"
-        driver = webdriver.Chrome(options=options, executable_path=PATH_CHROMEDRIVER_PATH)
-    
-
-                
- 
         
+        options = webdriver.ChromeOptions()
+
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("--disable-extensions")
+        options.add_argument("--ignore-ssl-errors=true")
+        options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--remote-debugging-port=9222")
+        options.add_argument('--verbose')
+
+        
+ 
+
+        
+        service = Service()
+
+        driver = webdriver.Chrome(service=service, options=options)
 
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
