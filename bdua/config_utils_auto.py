@@ -28,7 +28,7 @@ def initialize_driver():
     try:
         # Inicializar el controlador de Chrome
         #driver = webdriver.Chrome(service=service)
-        CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
+       # CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
         print("************ INICIO VERSION **************")
 
@@ -36,19 +36,19 @@ def initialize_driver():
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/bin/chromedriver-linux64')
 
         print("Installed Chromedriver Version:")
-        chromedriver_version_cmd = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver --version"
+        chromedriver_version_cmd = f"{CHROMEDRIVER_PATH}/chromedriver --version"
         chromedriver_version_output = subprocess.getoutput(chromedriver_version_cmd)
         print(chromedriver_version_output)
 
         print("Installed Chrome Version:")
-        chrome_version_cmd = f"{CHROME_PATH}/chrome-linux64/chrome --version"
+        chrome_version_cmd = f"{CHROME_PATH}/chrome --version"
         chrome_version_output = subprocess.getoutput(chrome_version_cmd)
         print(chrome_version_output)
 
         print("************ FIN VERSION **************")
 
 
-        CHROME_PATH = os.environ.get('CHROME_PATH')
+        #CHROME_PATH = os.environ.get('CHROME_PATH')
 
 
 
