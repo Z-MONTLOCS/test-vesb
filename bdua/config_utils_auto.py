@@ -30,7 +30,8 @@ def initialize_driver():
         #driver = webdriver.Chrome(service=service)
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
-        print("************ INICIO VERSION Linea 30 **************" )
+        print("************ INICIO VERSION **************")
+
         CHROME_PATH = os.environ.get('CHROME_PATH', '/opt/render/project/bin/chrome-linux64')
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/bin/chromedriver-linux64')
 
@@ -44,8 +45,7 @@ def initialize_driver():
         chrome_version_output = subprocess.getoutput(chrome_version_cmd)
         print(chrome_version_output)
 
-
-        print("************ FIN VERSION Linea 38 **************" )
+        print("************ FIN VERSION **************")
 
 
         CHROME_PATH = os.environ.get('CHROME_PATH')
