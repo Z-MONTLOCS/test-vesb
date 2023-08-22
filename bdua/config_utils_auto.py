@@ -27,6 +27,18 @@ def initialize_driver():
         #driver = webdriver.Chrome(service=service)
         CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH')
 
+        print("************ INICIO VERSION Linea 30 **************" )
+
+         # Mostrar la versión de Chromedriver
+        chromedriver_version_cmd = f"{CHROMEDRIVER_PATH}/chromedriver-linux64/chromedriver --version"
+        chromedriver_version_output = os.popen(chromedriver_version_cmd).read()
+        print("Installed Chromedriver Version:")
+        print(chromedriver_version_output)
+
+
+        print("************ FIN VERSION Linea 38 **************" )
+
+
         CHROME_PATH = os.environ.get('CHROME_PATH')
 
 
