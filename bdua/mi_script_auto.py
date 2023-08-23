@@ -4,15 +4,19 @@ from .config_utils_auto import initialize_driver,seleccionar_tipo_documento_y_id
 
 
 
+print("************ Incio ejecutar_mi_script_auto **************" )
 
 
 def ejecutar_mi_script_auto(datos):
+
+    print("************ Linea 12 **************" )
 
     driver, client = initialize_driver()
 
     seleccionar_tipo_documento_y_identificacion(driver, datos)
 
   
+    print("************ Linea 19 **************" )
 
     while True:
             # Descargar la imagen del captcha y obtener su ruta
