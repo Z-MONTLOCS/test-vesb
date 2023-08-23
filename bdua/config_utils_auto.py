@@ -192,7 +192,7 @@ def initialize_driver():
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument("--disable-extensions")
-        options.add_argument("--ignore-ssl-errors=true")
+        #soptions.add_argument("--ignore-ssl-errors=true")
         options.add_argument("--ignore-certificate-errors")
         options.add_argument("--remote-debugging-port=9222")
         
@@ -260,53 +260,95 @@ def seleccionar_tipo_documento_y_identificacion(driver, datos):
 
 
 
-def download_captcha_image(driver):
-    # Encontrar el elemento img por su ID
-    elemento_img = driver.find_element(By.ID, 'Capcha_CaptchaImageUP')
-    print("************ Encontrar el elemento img por su ID **************" )
+# def download_captcha_image(driver):
+#     # Encontrar el elemento img por su ID
+#     elemento_img = driver.find_element(By.ID, 'Capcha_CaptchaImageUP')
+#     print("************ Encontrar el elemento img por su ID **************" )
 
 
-    # Obtener la URL de la imagen
-    url_imagen = elemento_img.get_attribute('src')
-    print("************ Obtener la URL de la imagen **************" )
+#     # Obtener la URL de la imagen
+#     url_imagen = elemento_img.get_attribute('src')
+#     print("************ Obtener la URL de la imagen **************" )
 
 
     
 
-    # Descargar la imagen usando la librería requests
-    response = requests.get(url_imagen)
-    print("************ Descargar la imagen usando la librería requests **************" )
+#     # Descargar la imagen usando la librería requests
+#     response = requests.get(url_imagen)
+#     print("************ Descargar la imagen usando la librería requests **************" )
 
-    # Verificar si la descarga fue exitosa
-    if response.status_code == 200:
+#     # Verificar si la descarga fue exitosa
+#     if response.status_code == 200:
 
-        print("************ Verificar si la descarga fue exitosa **************" )
+#         print("************ Verificar si la descarga fue exitosa **************" )
 
-        print("************ Errooo **************" )
-
-
-        # Directorio donde se guardará la imagen
-        directorio_guardado = 'C:/test-vesb/test-bakend-api-env-phyton/bdua'
-
-        print("************ Errooo **************" )
+#         print("************ Errooo **************" )
 
 
-        # Nombre de archivo para la imagen
-        nombre_archivo = 'imagen_captcha.png'
+#         # Directorio donde se guardará la imagen
+#         directorio_guardado = 'C:/test-vesb/test-bakend-api-env-phyton/bdua'
 
-        # Ruta completa del archivo
-        ruta_archivo = os.path.join(directorio_guardado, nombre_archivo)
+#         print("************ Errooo **************" )
 
-        # Guardar la imagen en el directorio especificado
-        with open(ruta_archivo, 'wb') as archivo:
-            archivo.write(response.content)
 
-        # print(f'Imagen guardada en: {ruta_archivo}')
-    else:
-        print('Error al descargar la imagen')
+#         # Nombre de archivo para la imagen
+#         nombre_archivo = 'imagen_captcha.png'
 
-    captcha_file = ruta_archivo  # Devolver la ruta completa del archivo de imagen
-    return captcha_file
+#         # Ruta completa del archivo
+#         ruta_archivo = os.path.join(directorio_guardado, nombre_archivo)
+
+#         # Guardar la imagen en el directorio especificado
+#         with open(ruta_archivo, 'wb') as archivo:
+#             archivo.write(response.content)
+
+#         # print(f'Imagen guardada en: {ruta_archivo}')
+#     else:
+#         print('Error al descargar la imagen')
+
+#     captcha_file = ruta_archivo  # Devolver la ruta completa del archivo de imagen
+#     return captcha_file
+
+
+
+
+
+def download_captcha_image(driver):
+    try:
+        # Encontrar el elemento img por su ID
+        elemento_img = driver.find_element(By.ID, 'Capcha_CaptchaImageUP')
+
+        # Obtener la URL de la imagen
+        url_imagen = elemento_img.get_attribute('src')
+
+        # Descargar la imagen usando la librería requests
+        response = requests.get(url_imagen)
+
+        # Verificar si la descarga fue exitosa
+        if response.status_code == 200:
+
+            CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/opt/render/project/bin/chromedriver-linux64')
+            # Directorio donde se guardará la imagen
+            directorio_guardado = CHROMEDRIVER_PATH
+
+            # Nombre de archivo para la imagen
+            nombre_archivo = 'imagen_captcha.png'
+
+            # Ruta completa del archivo
+            ruta_archivo = os.path.join(directorio_guardado, nombre_archivo)
+
+            # Guardar la imagen en el directorio especificado
+            with open(ruta_archivo, 'wb') as archivo:
+                archivo.write(response.content)
+
+            captcha_file = ruta_archivo  # Devolver la ruta completa del archivo de imagen
+            return captcha_file
+        else:
+            print('Error al descargar la imagen')
+            return None
+    except Exception as e:
+        print(f'Error al descargar la imagen: {str(e)}')
+        return None
+
    
 
 
