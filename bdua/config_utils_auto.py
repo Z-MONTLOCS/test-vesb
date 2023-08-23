@@ -214,10 +214,18 @@ def initialize_driver():
         website = 'https://aplicaciones.adres.gov.co/bdua_internet/Pages/ConsultarAfiliadoWeb.aspx'
         driver.get(website)
 
-        # Resto del código para interactuar con la página
-        print("************ Driver Linea 218 **************" )
 
-        return driver
+        
+         # Configurar el cliente de DeathByCaptcha
+        username = "zyrivic"
+        password = "5RL:6dRdfadS#Hc"
+        client = HttpClient(username, password)
+
+
+        # Resto del código para interactuar con la página
+        print("************ Driver Linea 218  cliente **************" )
+
+        return driver,client
     except Exception as e:
         print("Error al inicializar el controlador:", e)
         raise
