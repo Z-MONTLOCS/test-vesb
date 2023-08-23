@@ -203,7 +203,7 @@ def initialize_driver():
 
         service = Service(executable_path=PATH_CHROMEDRIVER_PATH)
 
-        driver = webdriver.Chrome(service=service, options=options)
+        driver = webdriver.Chrome( options=options)
     
 
         #driver=webdriver.Chrome()
