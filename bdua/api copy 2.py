@@ -5,13 +5,6 @@ from .models import Person
 from .serializers import PersonSerializer
 from .mi_script_auto import ejecutar_mi_script_auto
 from django.http import Http404
-import logging
-
-
-import logging
-
-class DataProcessingError(Exception):
-    pass
 
 class PersonList(APIView):
     def get(self, request):
@@ -31,12 +24,8 @@ class PersonList(APIView):
                 middle_name = info['middle_name']
                 last_name = info['last_name']
                 second_last_name = info['second_last_name']
-            except DataProcessingError as e:
-                logging.error(f"Data processing error: {str(e)}")
-                return Response({"error": f"Data processing error: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             except Exception as e:
-                logging.error(f"Error processing data: {str(e)}")
-                return Response({"error": f"Error processing data: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({"error": "Error while processing data"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             person_instance = Person(
                 first_name=first_name,
@@ -47,14 +36,11 @@ class PersonList(APIView):
                 document_type=data['document_type'],
                 identification_number=data['identification_number']
             )
-
+            
             person_instance.save()
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 class PersonDetail(APIView):
     def get_object(self, document_type, identification_number):
