@@ -263,17 +263,33 @@ def seleccionar_tipo_documento_y_identificacion(driver, datos):
 def download_captcha_image(driver):
     # Encontrar el elemento img por su ID
     elemento_img = driver.find_element(By.ID, 'Capcha_CaptchaImageUP')
+    print("************ Encontrar el elemento img por su ID **************" )
+
 
     # Obtener la URL de la imagen
     url_imagen = elemento_img.get_attribute('src')
+    print("************ Obtener la URL de la imagen **************" )
+
+
+    
 
     # Descargar la imagen usando la librería requests
     response = requests.get(url_imagen)
+    print("************ Descargar la imagen usando la librería requests **************" )
 
     # Verificar si la descarga fue exitosa
     if response.status_code == 200:
+
+        print("************ Verificar si la descarga fue exitosa **************" )
+
+        print("************ Errooo **************" )
+
+
         # Directorio donde se guardará la imagen
         directorio_guardado = 'C:/test-vesb/test-bakend-api-env-phyton/bdua'
+
+        print("************ Errooo **************" )
+
 
         # Nombre de archivo para la imagen
         nombre_archivo = 'imagen_captcha.png'

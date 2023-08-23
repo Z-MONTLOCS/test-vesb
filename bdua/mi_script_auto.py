@@ -20,8 +20,13 @@ def ejecutar_mi_script_auto(datos):
     print("************ Linea 19  ejecutar_mi_script_auto **************" )
 
     while True:
+            
+            print("************ Linea 19  descarga imagen **************" )
+
             # Descargar la imagen del captcha y obtener su ruta
             captcha_file = download_captcha_image(driver)
+
+            print("************ Linea 29 imagen descargada **************" )
 
           
             captcha = client.decode(captcha_file)
