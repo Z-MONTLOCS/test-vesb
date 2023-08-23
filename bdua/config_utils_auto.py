@@ -215,7 +215,8 @@ def initialize_driver():
         driver.get(website)
 
         # Resto del código para interactuar con la página
-        
+        print("************ Driver Linea 218 **************" )
+
         return driver
     except Exception as e:
         print("Error al inicializar el controlador:", e)
