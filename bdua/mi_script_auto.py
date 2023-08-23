@@ -16,7 +16,7 @@ def ejecutar_mi_script_auto(datos):
     seleccionar_tipo_documento_y_identificacion(driver, datos)
 
   
-    print("************ Linea 19 **************" )
+    print("************ Linea 19  ejecutar_mi_script_auto **************" )
 
     while True:
             # Descargar la imagen del captcha y obtener su ruta

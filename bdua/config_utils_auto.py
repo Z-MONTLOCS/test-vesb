@@ -229,6 +229,9 @@ def initialize_driver():
 
 
 def seleccionar_tipo_documento_y_identificacion(driver, datos):
+
+    print("************ seleccionar_tipo_documento_y_identificacion**************" )
+
     document_type = datos.get('document_type')
     identification_number = datos.get('identification_number')
 
