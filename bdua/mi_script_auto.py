@@ -4,10 +4,11 @@ from .config_utils_auto import initialize_driver,seleccionar_tipo_documento_y_id
 
 
 
-print("************ Incio ejecutar_mi_script_auto **************" )
 
 
 def ejecutar_mi_script_auto(datos):
+    print("************ Incio ejecutar_mi_script_auto **************" )
+
 
     print("************ Linea 12 **************" )
 
