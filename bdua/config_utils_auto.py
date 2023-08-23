@@ -321,7 +321,9 @@ def download_captcha_image(driver):
         url_imagen = elemento_img.get_attribute('src')
 
         # Descargar la imagen usando la librería requests
-        response = requests.get(url_imagen)
+        #response = requests.get(url_imagen)
+
+        response = requests.get(url_imagen, verify=False)
 
         # Verificar si la descarga fue exitosa
         if response.status_code == 200:
