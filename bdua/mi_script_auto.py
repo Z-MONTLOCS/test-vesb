@@ -30,10 +30,20 @@ def ejecutar_mi_script_auto(datos):
 
           
             captcha = client.decode(captcha_file)
+            print("************ Linea 32 enviar imagen **************" )
+
 
             if captcha:
                 captcha_text = captcha["text"]
+
+                print("************ Codigo **************", captcha_text)
+
+
+
                 texto_span = solve_captcha_and_click_button(driver, captcha_text)
+
+                print("************ Clic**************" )
+
 
                 while "El codigo ingresado no es valido" in texto_span:
                     # El CAPTCHA no se resolvió correctamente, lo reportamos

@@ -353,6 +353,9 @@ def download_captcha_image(driver):
 
 
 def solve_captcha_and_click_button(driver, captcha_text):
+
+    print("************ solve_captcha_and_click_button **************", captcha_text)
+
     # Buscar el elemento por su id y enviar el texto del captcha
     elemento_input = driver.find_element(By.ID, 'Capcha_CaptchaTextBox')
     elemento_input.send_keys(captcha_text)
